@@ -1,0 +1,21 @@
+volumes:
+  maha_ecommerce_data:
+
+services:
+  postgres:
+    container_name: postgres_maha
+    hostname: postgres
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: 'maha_ecommerce'
+      POSTGRES_USER: 'maha_ecommerce'
+      POSTGRES_PASSWORD: 'maha_ecommerce'
+    ports:
+      - 5432:5432
+    volumes:
+      - maha_ecommerce_data:/var/lib/postgresql/data
+    networks:
+      - maha_ecommerce
+
+networks:
+  maha_ecommerce:
