@@ -20,6 +20,11 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async ({ view }) => {
-  return view.render('welcome')
-})
+Route.get('login', 'SessionsController.index')
+Route.post('login', 'SessionsController.store')
+
+Route.group(() => {
+  Route.get('/', async ({ view }) => {
+    return view.render('welcome')
+  })
+}).middleware('auth')
