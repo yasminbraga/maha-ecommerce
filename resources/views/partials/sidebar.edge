@@ -1,0 +1,33 @@
+<section class="sidebar">
+  <div class="sidebar-logo">
+    <img src="/images/logo-light.png" alt="">
+
+    <button type="button" class="reset-btn" id="close-sidebar">
+      <i class="material-icons-outlined">chevron_left</i>
+    </button>
+  </div>
+  <nav>
+    <a class="nav-link" href="/products">
+      <i class="material-icons-outlined md-18">sell</i>
+      Produtos
+    </a>
+    <a class="nav-link" href="">
+      <i class="material-icons-outlined md-18">group</i>
+      Usuários
+    </a>
+  </nav>
+
+  <footer class="sidebar-footer">
+    <div>
+      <h4>{{auth.user.name}}</h4>
+      <p class="text-light-gray">{{auth.user.email}}</p>
+    </div>
+
+    <form action="" method="post">
+      <button type="submit" class="logout-btn">
+        <i class="material-icons">logout</i>
+      </button>
+    </form>
+  </footer>
+</section>
+<div class="sidebar-overlay"></div>
