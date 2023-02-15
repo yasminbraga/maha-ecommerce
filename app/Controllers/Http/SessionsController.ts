@@ -16,4 +16,14 @@ export default class SessionsController {
       return response.redirect().back()
     }
   }
+
+  public async logout({ auth, response }: HttpContextContract) {
+    try {
+      await auth.use('web').logout()
+      return response.redirect('/login')
+    } catch (error) {
+      console.error(error)
+      return response.redirect().back()
+    }
+  }
 }
