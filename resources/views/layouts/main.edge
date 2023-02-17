@@ -13,10 +13,12 @@
 </head>
 
 <body>
+
   @include('partials/sidebar')
   @include('partials/header')
 
   <main class="container">
+    @include('partials/alerts')
     @!section('content')
   </main>
 </body>

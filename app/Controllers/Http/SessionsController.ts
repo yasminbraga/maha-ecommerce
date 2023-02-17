@@ -1,17 +1,18 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class SessionsController {
-  public async index({ view }: HttpContextContract) {
+  public async index({ view, session }: HttpContextContract) {
     return view.render('session/login')
   }
 
-  public async store({ auth, request, response }: HttpContextContract) {
+  public async store({ auth, request, response, session }: HttpContextContract) {
     const email = request.input('email')
     const password = request.input('password')
     try {
       await auth.use('web').attempt(email, password)
       return response.redirect('/')
     } catch (error) {
+      session.flash('error', 'Email ou senha incorretos.')
       console.error(error)
       return response.redirect().back()
     }

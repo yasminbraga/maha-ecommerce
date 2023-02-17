@@ -1,0 +1,23 @@
+@if(flashMessages.get('error'))
+<div class="alert error show">
+  <i class="material-icons-outlined">error_outline</i>
+  <div>
+    <h4>Erro!</h4>
+    <p>{{flashMessages.get('error')}}</p>
+  </div>
+  <button type="button" class="reset-btn close-alert">
+    <i class="material-icons-outlined md-18 md-light-gray">close</i>
+  </button>
+</div>
+@elseif(flashMessages.get('success'))
+<div class="alert success">
+  <i class="material-icons-outlined">task_alt</i>
+  <div>
+    <h4>Sucesso!</h4>
+    <p>{{flashMessages.get('success')}}</p>
+  </div>
+  <button type="button" class="reset-btn close-alert">
+    <i class="material-icons-outlined md-18 md-light-gray">close</i>
+  </button>
+</div>
+@endif
