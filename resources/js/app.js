@@ -1,6 +1,7 @@
 import '../css/app.css'
 import { HandleSidebar } from './handleSidebar'
 import './highlightLinks'
+import './closeAlert'
 
 const showSidebarBtn = document.querySelector('#show-sidebar')
 const closeSidebarBtn = document.querySelector('#close-sidebar')
