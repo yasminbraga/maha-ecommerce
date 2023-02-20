@@ -51,6 +51,42 @@ body {
   color: var(--light-gray);
 }
 
+.primary-btn {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: none;
+  background-color: #0d2601;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 0.15rem;
+  transition: all 0.5s;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.primary-btn:hover {
+  background-color: #90a67b;
+}
+
+.primary-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #0d2601;
+  color: #fff;
+  width: max-content;
+  font-weight: 500;
+  border-radius: 0.15rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 /* ALERTS */
 .alert {
   display: flex;
@@ -84,6 +120,12 @@ body {
   animation: hide-alert 1s ease forwards;
 }
 
+.error-container {
+  color: var(--error-color);
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
 @keyframes show-alert {
   0% {
     top: -100%;
@@ -104,6 +146,16 @@ body {
   }
 }
 
+/* MAIN CONTAINER */
+main.container {
+  position: relative;
+  margin: 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* LOGIN */
 main.login-container {
   display: flex;
@@ -114,6 +166,7 @@ main.login-container {
   position: relative;
 }
 
+.form-card,
 .form-container {
   background-color: #fff;
   width: 100%;
@@ -129,17 +182,22 @@ form {
   flex-direction: column;
 }
 
-h2 {
+h2.card-title {
   margin-bottom: 2rem;
   color: #0d2601;
+
+  /* text-transform: uppercase; */
 }
 
 label {
   color: #0d2601;
-  font-weight: 500;
-  margin-bottom: 0.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
+textarea,
 input {
   background-color: var(--background-color);
   border: none;
@@ -148,32 +206,13 @@ input {
   border: 1px solid transparent;
   transition: all 0.5s;
   color: #0d2601;
+  font-size: 16px;
 }
 
+textarea,
 input:focus {
   outline: none;
   border: 1px solid #90a67b;
-}
-
-.primary-btn {
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  border: none;
-  background-color: #0d2601;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 0.15rem;
-  transition: all 0.5s;
-  cursor: pointer;
-}
-
-.primary-btn:hover {
-  background-color: #90a67b;
-}
-
-/* MAIN CONTAINER */
-main.container {
-  position: relative;
 }
 
 /* MAIN HEADER */
@@ -269,6 +308,17 @@ main.container {
 
 .logout-btn:hover {
   color: #bb3e03;
+}
+
+/* FORMS */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+textarea {
+  resize: none;
 }
 
 @media (min-width: 1200px) {

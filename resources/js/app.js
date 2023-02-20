@@ -2,6 +2,7 @@ import '../css/app.css'
 import { HandleSidebar } from './handleSidebar'
 import './highlightLinks'
 import './closeAlert'
+import './priceInputMask'
 
 const showSidebarBtn = document.querySelector('#show-sidebar')
 const closeSidebarBtn = document.querySelector('#close-sidebar')

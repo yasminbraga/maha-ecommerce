@@ -1,0 +1,41 @@
+@layout('layouts/main')
+
+@section('content')
+<section class="form-card">
+  <h2 class="card-title">Novo produto</h2>
+  <form action="{{route('ProductsController.store')}}" method="POST">
+    <div class="field">
+      <label for="name">Nome do produto</label>
+      <input type="text" name="name" id="name" placeholder="Nome do produto">
+      @if(flashMessages.has('errors.name'))
+      <span class="error-container">
+        {{flashMessages.get('errors.name')}}
+      </span>
+      @endif
+    </div>
+
+    <div class="field">
+      <label for="price">Preço</label>
+      <input type="text" name="price" id="price" placeholder="Preço do produto"
+        value="{{flashMessages.get('price') || ''}}">
+      @if(flashMessages.has('errors.price'))
+      <span class="error-container">
+        {{flashMessages.get('errors.price')}}
+      </span>
+      @endif
+    </div>
+
+    <div class="field">
+      <label for="description">Descrição</label>
+      <textarea name="description" id="description" cols="30" rows="4" placeholder="Descrição do produto"></textarea>
+      @if(flashMessages.has('errors.description'))
+      <span class="error-container">
+        {{flashMessages.get('errors.description')}}
+      </span>
+      @endif
+    </div>
+
+    <button type="submit" class="primary-btn">Criar</button>
+  </form>
+</section>
+@endsection
