@@ -25,7 +25,7 @@
       <td title="Preço">{{product.price}}</td>
       <td>
         <div class="action">
-          <a href="#">
+          <a href="{{route('ProductsController.edit', {id: product.id})}}">
             <i class="material-icons-outlined md-light-gray">edit</i>
           </a>
           <form action="#" method="post">

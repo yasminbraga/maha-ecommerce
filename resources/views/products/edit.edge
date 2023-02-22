@@ -2,8 +2,9 @@
 
 @section('content')
 <section class="form-card">
-  <h2 class="card-title">Novo produto</h2>
-  <form action="{{route('ProductsController.store')}}" method="POST" enctype="multipart/form-data">
+  <h2 class="card-title">Editar produto</h2>
+  <form action="{{route('ProductsController.update', {id: product.id})}}?_method=PUT" method="POST"
+    enctype="multipart/form-data">
     @include('products/fields')
 
     {{-- <input type="file" name="image" id="image"> --}}

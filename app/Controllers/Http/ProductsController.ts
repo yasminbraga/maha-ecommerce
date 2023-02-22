@@ -14,7 +14,9 @@ export default class ProductsController {
       return response.redirect().back()
     }
   }
-  public async create({ view }: HttpContextContract) {
+  public async create({ view, session }: HttpContextContract) {
+    session.flash('error', 'Produto não encontrado.')
+
     return view.render('products/create')
   }
 
@@ -22,6 +24,7 @@ export default class ProductsController {
     const data = await request.validate(ProductValidator)
     try {
       await Product.create({ ...data, price: formatPriceToCreate(data.price) })
+      session.flash('success', 'Produto criado com sucesso.')
       return response.redirect().toRoute('ProductsController.index')
     } catch (error) {
       console.error(error)
@@ -30,12 +33,38 @@ export default class ProductsController {
     }
   }
 
-  public async edit({ view }: HttpContextContract) {
-    return view.render('products/create')
+  public async edit({ request, response, session, view }: HttpContextContract) {
+    const id = request.param('id')
+
+    try {
+      const product = await Product.findOrFail(id)
+      return view.render('products/edit', { product })
+    } catch (error) {
+      console.error(error)
+      session.flash('error', 'Produto não encontrado.')
+      return response.redirect().back()
+    }
   }
 
-  public async update({ view }: HttpContextContract) {
-    return view.render('products/create')
+  public async update({ request, response, session }: HttpContextContract) {
+    const id = request.param('id')
+    const data = await request.validate(ProductValidator)
+
+    const product = await Product.find(id)
+    if (!product) {
+      session.flash('error', 'Produto não encontrado.')
+      return response.redirect().back()
+    }
+
+    try {
+      await product.merge({ ...data, price: formatPriceToCreate(data.price) }).save()
+      session.flash('success', 'Produto editado com sucesso.')
+      return response.redirect().toRoute('ProductsController.index')
+    } catch (error) {
+      console.error(error)
+      session.flash('error', 'Erro ao editar produto')
+      return response.redirect().back()
+    }
   }
 
   public async destroy({ view }: HttpContextContract) {
