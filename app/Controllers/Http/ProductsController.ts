@@ -14,9 +14,7 @@ export default class ProductsController {
       return response.redirect().back()
     }
   }
-  public async create({ view, session }: HttpContextContract) {
-    session.flash('error', 'Produto não encontrado.')
-
+  public async create({ view }: HttpContextContract) {
     return view.render('products/create')
   }
 
@@ -53,7 +51,7 @@ export default class ProductsController {
     const product = await Product.find(id)
     if (!product) {
       session.flash('error', 'Produto não encontrado.')
-      return response.redirect().back()
+      return response.redirect().toRoute('ProductsController.index')
     }
 
     try {
@@ -67,7 +65,22 @@ export default class ProductsController {
     }
   }
 
-  public async destroy({ view }: HttpContextContract) {
-    return view.render('products/create')
+  public async destroy({ request, response, session }: HttpContextContract) {
+    const id = request.param('id')
+
+    const product = await Product.find(id)
+    if (!product) {
+      session.flash('error', 'Produto não encontrado.')
+      return response.redirect().toRoute('ProductsController.index')
+    }
+
+    try {
+      await product.delete()
+      return response.redirect().toRoute('ProductsController.index')
+    } catch (error) {
+      console.error(error)
+      session.flash('error', 'Erro ao deletar produto')
+      return response.redirect().back()
+    }
   }
 }
