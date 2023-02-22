@@ -1,0 +1,43 @@
+@layout('layouts/main')
+
+
+@section('content')
+<header class="section-header">
+  <a href="{{route('ProductsController.create')}}" class="primary-link">
+    <i class="material-icons-outlined md-18">add</i>
+    Novo produto
+  </a>
+</header>
+
+<table>
+  <thead>
+    <th>Produto</th>
+    <th>Preço</th>
+    <th></th>
+  </thead>
+  <tbody>
+    @each(product in products)
+    <tr>
+      <td title="Produto">
+        <h4 class="table-title">{{product.name}}</h5>
+          <p class="table-subtitle">{{product.description}}</p>
+      </td>
+      <td title="Preço">{{product.price}}</td>
+      <td>
+        <div class="action">
+          <a href="{{route('ProductsController.edit', {id: product.id})}}">
+            <i class="material-icons-outlined md-light-gray">edit</i>
+          </a>
+          <form action="{{route('ProductsController.destroy', {id: product.id})}}?_method=DELETE" method="post"
+            class="confirm-destroy">
+            <button type="button" class="reset-btn">
+              <i class="material-icons-outlined md-red">delete</i>
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    @endeach
+  </tbody>
+</table>
+@endsection

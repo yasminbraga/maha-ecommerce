@@ -28,4 +28,6 @@ Route.group(() => {
   Route.get('/', async ({ view }) => {
     return view.render('welcome')
   })
+
+  Route.resource('products', 'ProductsController')
 }).middleware('auth')

@@ -17,14 +17,17 @@
   <main class="login-container">
     @include('partials/alerts')
     <div class="form-container">
-      <h2>Login</h2>
+      <h2 class="card-title">Login</h2>
 
       <form action="{{route('SessionsController.store')}}" method="post">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="email@email.com">
-
-        <label for="password">Senha</label>
-        <input type="password" name="password" id="password" placeholder="Digite sua senha">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="email@email.com">
+        </div>
+        <div class="field">
+          <label for="password">Senha</label>
+          <input type="password" name="password" id="password" placeholder="Digite sua senha">
+        </div>
 
         <button type="submit" class="primary-btn">Entrar</button>
       </form>
