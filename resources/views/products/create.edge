@@ -3,7 +3,7 @@
 @section('content')
 <section class="form-card">
   <h2 class="card-title">Novo produto</h2>
-  <form action="{{route('ProductsController.store')}}" method="POST">
+  <form action="{{route('ProductsController.store')}}" method="POST" enctype="multipart/form-data">
     <div class="field">
       <label for="name">Nome do produto</label>
       <input type="text" name="name" id="name" placeholder="Nome do produto">
@@ -34,6 +34,8 @@
       </span>
       @endif
     </div>
+
+    {{-- <input type="file" name="image" id="image"> --}}
 
     <button type="submit" class="primary-btn">Criar</button>
   </form>

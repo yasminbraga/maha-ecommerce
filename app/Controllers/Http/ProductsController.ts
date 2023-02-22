@@ -4,8 +4,15 @@ import { formatPriceToCreate } from 'App/utils/formatPriceToCreate'
 import ProductValidator from 'App/Validators/ProductValidator'
 
 export default class ProductsController {
-  public async index({ view }: HttpContextContract) {
-    return view.render('products/index')
+  public async index({ view, session, response }: HttpContextContract) {
+    try {
+      const products = await Product.all()
+      return view.render('products/index', { products })
+    } catch (error) {
+      console.error(error)
+      session.flash('error', 'Erro ao encontrar produtos')
+      return response.redirect().back()
+    }
   }
   public async create({ view }: HttpContextContract) {
     return view.render('products/create')

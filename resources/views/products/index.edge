@@ -8,4 +8,35 @@
     Novo produto
   </a>
 </header>
+
+<table>
+  <thead>
+    <th>Produto</th>
+    <th>Preço</th>
+    <th></th>
+  </thead>
+  <tbody>
+    @each(product in products)
+    <tr>
+      <td title="Produto">
+        <h4 class="table-title">{{product.name}}</h5>
+          <p class="table-subtitle">{{product.description}}</p>
+      </td>
+      <td title="Preço">{{product.price}}</td>
+      <td>
+        <div class="action">
+          <a href="#">
+            <i class="material-icons-outlined md-light-gray">edit</i>
+          </a>
+          <form action="#" method="post">
+            <button type="submit" class="reset-btn">
+              <i class="material-icons-outlined md-red">delete</i>
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    @endeach
+  </tbody>
+</table>
 @endsection
