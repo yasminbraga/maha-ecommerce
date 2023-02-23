@@ -18,9 +18,12 @@
   <tbody>
     @each(product in products)
     <tr>
-      <td title="Produto">
-        <h4 class="table-title">{{product.name}}</h5>
+      <td title="Produto" class="table-content">
+        <img class="table-img" src="{{product.file.url}}" alt="{{product.name}}">
+        <div>
+          <h4 class="table-title">{{product.name}}</h4>
           <p class="table-subtitle">{{product.description}}</p>
+        </div>
       </td>
       <td title="Preço">{{product.price}}</td>
       <td>

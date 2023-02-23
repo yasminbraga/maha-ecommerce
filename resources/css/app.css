@@ -350,6 +350,16 @@ table thead th {
   border-bottom: 1px solid var(--extra-light-gray);
 }
 
+.table-content {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.table-img {
+  width: 40px;
+}
+
 .table-title {
   font-weight: 600;
   color: var(--text-gray);
