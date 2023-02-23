@@ -66,6 +66,7 @@
     "@adonisjs/session": "^6.2.0",
     "@adonisjs/shield": "^7.0.0",
     "@adonisjs/view": "^6.1.0",
+    "cloudinary": "^1.34.0",
     "luxon": "^3.2.1",
     "pg": "^8.9.0",
     "proxy-addr": "^2.0.7",

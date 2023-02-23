@@ -23,4 +23,7 @@ export default Env.rules({
   SESSION_DRIVER: Env.schema.string(),
   DRIVE_DISK: Env.schema.enum(['local'] as const),
   NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
+  CLOUDINARY_API_KEY: Env.schema.string(),
+  CLOUDINARY_API_SECRET: Env.schema.string(),
+  CLOUDINARY_NAME: Env.schema.string(),
 })

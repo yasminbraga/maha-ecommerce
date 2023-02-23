@@ -7,6 +7,9 @@ export default class ProductValidator {
     name: schema.string(),
     description: schema.string(),
     price: schema.string(),
+    image: schema.file({
+      extnames: ['png', 'jpg'],
+    }),
   })
 
   public messages: CustomMessages = {
