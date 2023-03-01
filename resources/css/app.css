@@ -71,10 +71,6 @@ body {
   text-transform: uppercase;
 }
 
-.primary-btn:hover {
-  background-color: #90a67b;
-}
-
 .primary-link {
   display: flex;
   align-items: center;
@@ -84,7 +80,14 @@ body {
   color: #fff;
   width: max-content;
   font-weight: 500;
+  font-size: 14px;
   border-radius: 0.15rem;
+  transition: all 0.5s;
+}
+
+.primary-link:hover,
+.primary-btn:hover {
+  background-color: #90a67b;
 }
 
 .section-header {
@@ -226,9 +229,15 @@ input:focus {
   height: 60px;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
   background-color: #fff;
   border-bottom: 1px solid var(--extra-light-gray);
+}
+
+.header-title {
+  color: var(--dark-green);
+  font-weight: 500;
 }
 
 /* SIDEBAR */
@@ -333,7 +342,7 @@ table {
   border-collapse: collapse;
   width: 100%;
   box-shadow: var(--box-shadow);
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
 }
 
 th,
