@@ -20,14 +20,16 @@
   <tbody>
     @each(product in products)
     <tr>
-      <td title="Produto" class="table-content">
-        <img class="table-img" src="{{product.file.url}}" alt="{{product.name}}">
-        <div>
-          <h4 class="table-title">{{product.name}}</h4>
-          <p class="table-subtitle">{{product.description}}</p>
+      <td title="Produto" class="td-content">
+        <div class="table-content">
+          <img class="table-img" src="{{product.file.url}}" alt="{{product.name}}">
+          <div>
+            <h4 class="table-title">{{product.name}}</h4>
+            <p class="table-subtitle">{{product.description}}</p>
+          </div>
         </div>
       </td>
-      <td title="Preço">{{product.price}}</td>
+      <td title="Preço">{{product.formatedPrice}}</td>
       <td>
         <div class="action">
           <a href="{{route('ProductsController.edit', {id: product.id})}}">

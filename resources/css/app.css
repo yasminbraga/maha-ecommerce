@@ -359,14 +359,16 @@ table thead th {
   border-bottom: 1px solid var(--extra-light-gray);
 }
 
-.table-content {
+.td-content {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
 .table-img {
-  width: 40px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
 }
 
 .table-title {
@@ -381,6 +383,11 @@ table thead th {
 .action {
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
+}
+
+.table-content {
+  display: flex;
   gap: 1rem;
 }
 
@@ -425,6 +432,12 @@ table thead th {
   table tr td {
     display: flex;
     flex-direction: column;
+  }
+
+  .td-content {
+    display: flex;
+    gap: 1rem;
+    align-items: inherit;
   }
 }
 
