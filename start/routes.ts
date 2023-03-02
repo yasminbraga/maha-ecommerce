@@ -30,4 +30,5 @@ Route.group(() => {
   })
 
   Route.resource('products', 'ProductsController')
+  Route.resource('users', 'UsersController')
 }).middleware('auth')
