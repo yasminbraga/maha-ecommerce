@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, computed, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import File from './File'
+import { formatPriceToFetch } from 'App/utils/formatPriceToFetch'
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
@@ -23,4 +24,9 @@ export default class Product extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @computed()
+  public get formatedPrice() {
+    return formatPriceToFetch(this.price)
+  }
 }

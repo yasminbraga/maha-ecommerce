@@ -9,8 +9,7 @@ export default class ProductsController {
   public async index({ view, session, response }: HttpContextContract) {
     try {
       const products = await Product.query().preload('file')
-      // const productsToJson = products.map((i) => i.toJSON())
-      return view.render('products/index', { products })
+      return view.render('products/index', { products: products.map((i) => i.toJSON()) })
     } catch (error) {
       console.error(error)
       session.flash('error', 'Erro ao encontrar produtos')
