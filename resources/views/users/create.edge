@@ -1,0 +1,43 @@
+@layout('layouts/main')
+
+@section('content')
+<section class="form-card">
+  <h2 class="card-title">Novo usuário</h2>
+  <form action="{{route('UsersController.store')}}" method="POST">
+    <div class="field">
+      <label for="name">Nome</label>
+      <input type="text" name="name" id="name" placeholder="Nome do usuário"
+        value="{{flashMessages.get('name') || user?.name || ''}}">
+      @if(flashMessages.has('errors.name'))
+      <span class="error-container">
+        {{flashMessages.get('errors.name')}}
+      </span>
+      @endif
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" placeholder="Email do usuário"
+        value="{{flashMessages.get('email') || user?.email || ''}}">
+      @if(flashMessages.has('errors.email'))
+      <span class="error-container">
+        {{flashMessages.get('errors.email')}}
+      </span>
+      @endif
+    </div>
+
+    <div class="field">
+      <label for="password">Senha</label>
+      <input type="password" name="password" id="password" placeholder="Senha"
+        value="{{flashMessages.get('password') || user?.password || ''}}">
+      @if(flashMessages.has('errors.password'))
+      <span class="error-container">
+        {{flashMessages.get('errors.password')}}
+      </span>
+      @endif
+    </div>
+
+    <button type="submit" class="primary-btn">Salvar</button>
+  </form>
+</section>
+@endsection

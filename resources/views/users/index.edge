@@ -1,0 +1,47 @@
+@layout('layouts/main')
+
+@set('title', 'Produtos')
+
+
+@section('content')
+<header class="section-header">
+  <a href="{{route('UsersController.create')}}" class="primary-link">
+    <i class="material-icons-outlined md-18">add</i>
+    Novo usuário
+  </a>
+</header>
+
+<table>
+  <thead>
+    <th>Usuário</th>
+    <th></th>
+  </thead>
+  <tbody>
+    @each(user in users)
+    <tr>
+      <td title="Usuário" class="td-content">
+        <div class="table-content">
+          <div>
+            <h4 class="table-title">{{user.name}}</h4>
+            <p class="table-subtitle">{{user.email}}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="action">
+          <a href="{{route('UsersController.edit', {id: user.id})}}">
+            <i class="material-icons-outlined md-light-gray">edit</i>
+          </a>
+          <form action="{{route('UsersController.destroy', {id: user.id})}}?_method=DELETE" method="post"
+            class="confirm-destroy">
+            <button type="button" class="reset-btn">
+              <i class="material-icons-outlined md-red">delete</i>
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    @endeach
+  </tbody>
+</table>
+@endsection

@@ -1,0 +1,32 @@
+@layout('layouts/main')
+
+@section('content')
+<section class="form-card">
+  <h2 class="card-title">Editar usuário</h2>
+  <form action="{{route('UsersController.update', {id: user.id})}}?_method=PUT" method="POST">
+    <div class="field">
+      <label for="name">Nome</label>
+      <input type="text" name="name" id="name" placeholder="Nome do usuário"
+        value="{{flashMessages.get('name') || user?.name || ''}}">
+      @if(flashMessages.has('errors.name'))
+      <span class="error-container">
+        {{flashMessages.get('errors.name')}}
+      </span>
+      @endif
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" placeholder="Email do usuário"
+        value="{{flashMessages.get('email') || user?.email || ''}}">
+      @if(flashMessages.has('errors.email'))
+      <span class="error-container">
+        {{flashMessages.get('errors.email')}}
+      </span>
+      @endif
+    </div>
+
+    <button type="submit" class="primary-btn">Salvar</button>
+  </form>
+</section>
+@endsection

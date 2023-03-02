@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class SessionsController {
-  public async index({ view, session }: HttpContextContract) {
+  public async index({ view }: HttpContextContract) {
     return view.render('session/login')
   }
 
