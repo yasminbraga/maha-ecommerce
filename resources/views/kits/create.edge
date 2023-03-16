@@ -1,0 +1,11 @@
+@layout('layouts/main')
+
+@section('content')
+<section class="form-card">
+  <h2 class="card-title">Novo kit</h2>
+  <form action="{{route('KitsController.store')}}" method="POST" enctype="multipart/form-data">
+    @include('kits/fields')
+    <button type="submit" class="primary-btn">Salvar</button>
+  </form>
+</section>
+@endsection

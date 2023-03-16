@@ -7,6 +7,14 @@
       "js": [
         "http://localhost:8080/assets/app.js"
       ]
+    },
+    "react_app": {
+      "css": [
+        "http://localhost:8080/assets/react_app.css"
+      ],
+      "js": [
+        "http://localhost:8080/assets/react_app.js"
+      ]
     }
   }
 }

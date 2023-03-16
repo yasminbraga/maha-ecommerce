@@ -1,0 +1,26 @@
+<div class="field">
+  <label for="name">Nome do kit</label>
+  <input type="text" name="name" id="name" placeholder="Nome do kit"
+    value="{{flashMessages.get('name') || kit?.name || ''}}">
+  @if(flashMessages.has('errors.name'))
+  <span class="error-container">
+    {{flashMessages.get('errors.name')}}
+  </span>
+  @endif
+</div>
+
+<div class="field">
+  <label for="price">Preço Final</label>
+  <input type="text" name="price" id="price" placeholder="Preço do produto"
+    value="{{flashMessages.get('price') || kit?.price || ''}}">
+  @if(flashMessages.has('errors.price'))
+  <span class="error-container">
+    {{flashMessages.get('errors.price')}}
+  </span>
+  @endif
+</div>
+
+<input type="file" name="image" id="image">
+<div id="product-select-input" data-products={{encodeURI(JSON.stringify(products))}} created-products={{kit ?
+  encodeURI(JSON.stringify(kit.products)) : '' }}>
+</div>

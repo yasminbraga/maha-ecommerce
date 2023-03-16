@@ -1,0 +1,53 @@
+@layout('layouts/main')
+
+@set('title', 'Kits')
+
+@section('content')
+<header class="section-header">
+  <a href="{{route('KitsController.create')}}" class="primary-link">
+    <i class="material-icons-outlined md-18">add</i>
+    Novo kit
+  </a>
+</header>
+
+<table>
+  <thead>
+    <th>Kit</th>
+    <th>Preço</th>
+    <th></th>
+  </thead>
+  <tbody>
+    @each(kit in kits)
+    <tr>
+      <td title="Kit" class="td-content">
+        <div class="table-content">
+          <img class="table-img" src="{{kit.file.url}}" alt="{{kit.name}}">
+          <div>
+            <h4 class="table-title">{{kit.name}}</h4>
+            <p class="table-subtitle">
+              @each(product in kit.products)
+              {{product.name}},
+              @endeach
+            </p>
+          </div>
+        </div>
+      </td>
+      <td title="Preço">{{kit.formatedPrice}}</td>
+      <td>
+        <div class="action">
+          <a href="{{route('KitsController.edit', {id: kit.id})}}">
+            <i class="material-icons-outlined md-light-gray">edit</i>
+          </a>
+          <form action="{{route('KitsController.destroy', {id: kit.id})}}?_method=DELETE" method="post"
+            class="confirm-destroy">
+            <button type="button" class="reset-btn">
+              <i class="material-icons-outlined md-red">delete</i>
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    @endeach
+  </tbody>
+</table>
+@endsection
