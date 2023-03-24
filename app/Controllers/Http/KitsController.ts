@@ -105,7 +105,22 @@ export default class KitsController {
     }
   }
 
-  public async destroy({ view }: HttpContextContract) {
-    return view.render('kits/index')
+  public async destroy({ request, response, session }: HttpContextContract) {
+    const id = request.param('id')
+    const kit = await Kit.query().where('id', id).preload('file').first()
+    if (!kit) {
+      session.flash('error', 'Kit não encontrado.')
+      return response.redirect().toRoute('KitsController.index')
+    }
+    try {
+      await cloudinary.uploader.destroy(kit.file.publicId)
+      await kit.delete()
+      session.flash('success', 'Kit editado com sucesso.')
+      return response.redirect().toRoute('KitsController.index')
+    } catch (error) {
+      console.error(error)
+      session.flash('error', 'Erro ao deletar')
+      return response.redirect().back()
+    }
   }
 }
