@@ -46,6 +46,7 @@ Encore.setPublicPath('/assets')
 |
 */
 Encore.addEntry('app', './resources/js/app.js')
+Encore.addEntry('react_app', './resources/js/app.ts')
 
 /*
 |--------------------------------------------------------------------------
@@ -197,6 +198,16 @@ Encore.configureDevServerOptions((options) => {
 | the level to "info".
 |
 */
+Encore.enableBabelTypeScriptPreset({
+  isTSX: true,
+  allExtensions: true,
+})
+Encore.enableReactPreset()
+Encore.configureBabelPresetEnv(function (options) {
+  options.useBuiltIns = 'usage'
+  options.corejs = '3.0'
+})
+
 const config = Encore.getWebpackConfig()
 config.infrastructureLogging = {
   level: 'warn',
