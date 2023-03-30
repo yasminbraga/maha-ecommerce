@@ -19,4 +19,5 @@ Route.group(() => {
   Route.resource('products', 'ProductsController')
   Route.resource('kits', 'KitsController')
   Route.resource('users', 'UsersController')
+  Route.resource('clients', 'ClientsController')
 }).middleware('auth')

@@ -1,0 +1,28 @@
+@layout('layouts/main')
+
+@set('title', 'Clientes')
+
+
+@section('content')
+<table>
+  <thead>
+    <th>Cliente</th>
+    <th>Telefone</th>
+  </thead>
+  <tbody>
+    @each(client in clients)
+    <tr>
+      <td title="Cliente" class="td-content">
+        <div class="table-content">
+          <div>
+            <h4 class="table-title">{{client.name}}</h4>
+            <p class="table-subtitle">{{client.email}}</p>
+          </div>
+        </div>
+      </td>
+      <td title="Telefone">{{client.phone}}</td>
+    </tr>
+    @endeach
+  </tbody>
+</table>
+@endsection
