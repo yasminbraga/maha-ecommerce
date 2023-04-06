@@ -6,7 +6,11 @@ Route.post('logout', 'SessionsController.logout')
 
 Route.group(() => {
   Route.get('products', 'ProductsController.index')
-  Route.post('signin', 'ClientsController.store')
+  Route.post('signup', 'ClientsController.store')
+  Route.post('signin', 'SessionsController.store')
+  Route.group(() => {
+    Route.get('client', 'ClientsController.index')
+  }).middleware('auth:apiClient')
 })
   .namespace('App/Controllers/Http/Api')
   .prefix('api')
