@@ -7,19 +7,19 @@
     </button>
   </div>
   <nav>
-    <a class="nav-link" href="/products">
+    <a class="nav-link" href="/private/products">
       <i class="material-icons-outlined md-18">sell</i>
       Produtos
     </a>
-    <a class="nav-link" href="/kits">
+    <a class="nav-link" href="/private/kits">
       <i class="material-icons-outlined md-18">inventory_2</i>
       Kits
     </a>
-    <a class="nav-link" href="/clients">
+    <a class="nav-link" href="/private/clients">
       <i class="material-icons-outlined md-18">group</i>
       Clientes
     </a>
-    <a class="nav-link" href="/users">
+    <a class="nav-link" href="/private/users">
       <i class="material-icons-outlined md-18">manage_accounts</i>
       Usuários
     </a>
@@ -31,7 +31,7 @@
       <p class="text-light-gray">{{auth.user.email}}</p>
     </div>
 
-    <form action="{{route('/logout')}}" method="post">
+    <form action="{{route('/private/logout')}}" method="post">
       <button type="submit" class="logout-btn">
         <i class="material-icons">logout</i>
       </button>

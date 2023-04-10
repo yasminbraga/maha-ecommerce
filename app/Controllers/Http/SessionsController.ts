@@ -10,7 +10,7 @@ export default class SessionsController {
     const password = request.input('password')
     try {
       await auth.use('web').attempt(email, password)
-      return response.redirect('/')
+      return response.redirect().toRoute('ProductsController.index')
     } catch (error) {
       session.flash('error', 'Email ou senha incorretos.')
       console.error(error)

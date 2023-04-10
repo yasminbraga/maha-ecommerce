@@ -5,19 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  @entryPointStyles('app')
-  @entryPointScripts('app')
+  <title>Maha Biocosméticos</title>
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
-  <title>Maha - Login</title>
+  @entryPointStyles('public_app')
+  @entryPointScripts('public_app')
 </head>
 
 <body>
   <main class="login-container">
     @include('partials/alerts')
     <div class="form-container">
-      <h2 class="card-title">Login</h2>
+      <h2 class="card-title">Criar conta</h2>
+      <p>Já possui conta? <a href="{{route('/signin')}}">Login</a></p>
 
-      <form action="{{route('/admin/login')}}" method="post">
+      <form action="{{route('/signup')}}" method="post">
+        <div class="field">
+          <label for="name">Nome</label>
+          <input type="text" name="name" id="name" placeholder="Seu nome">
+        </div>
         <div class="field">
           <label for="email">Email</label>
           <input type="email" name="email" id="email" placeholder="email@email.com">
@@ -26,8 +31,12 @@
           <label for="password">Senha</label>
           <input type="password" name="password" id="password" placeholder="Digite sua senha">
         </div>
+        <div class="field">
+          <label for="phone">Telefone</label>
+          <input type="text" name="phone" id="phone" placeholder="Digite seu número">
+        </div>
 
-        <button type="submit" class="primary-btn">Entrar</button>
+        <button type="submit" class="primary-btn">Criar conta</button>
       </form>
     </div>
   </main>

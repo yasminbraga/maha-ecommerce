@@ -3,7 +3,7 @@
   "include": ["**/*"],
   "exclude": ["node_modules", "build"],
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "react-jsx",
     "outDir": "build",
     "rootDir": "./",
     "sourceMap": true,
