@@ -46,6 +46,7 @@ Encore.setPublicPath('/assets')
 |
 */
 Encore.addEntry('app', './resources/js/app.js')
+Encore.addEntry('public_app', './resources/js/public_app.js')
 Encore.addEntry('react_app', './resources/js/app.ts')
 
 /*

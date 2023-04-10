@@ -13,7 +13,7 @@ export default class AuthMiddleware {
   /**
    * The URL to redirect to when request is Unauthorized
    */
-  protected redirectTo = '/login'
+  protected redirectTo = '/admin/login'
 
   /**
    * Authenticates the current HTTP request against a custom set of defined
@@ -34,6 +34,7 @@ export default class AuthMiddleware {
 
     for (let guard of guards) {
       guardLastAttempted = guard
+      this.setRedirectToByGuard(guard)
 
       if (await auth.use(guard).check()) {
         /**
@@ -45,7 +46,6 @@ export default class AuthMiddleware {
         return true
       }
     }
-
     /**
      * Unable to authenticate using any guard
      */
@@ -55,6 +55,18 @@ export default class AuthMiddleware {
       guardLastAttempted,
       this.redirectTo
     )
+  }
+
+  private setRedirectToByGuard(guard: keyof GuardsList) {
+    switch (guard) {
+      case 'webClient':
+        this.redirectTo = '/signin'
+        break
+      default:
+      case 'web':
+        this.redirectTo = '/admin/login'
+        break
+    }
   }
 
   /**
