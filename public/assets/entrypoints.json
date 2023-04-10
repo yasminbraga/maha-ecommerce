@@ -8,6 +8,14 @@
         "http://localhost:8080/assets/app.js"
       ]
     },
+    "public_app": {
+      "css": [
+        "http://localhost:8080/assets/public_app.css"
+      ],
+      "js": [
+        "http://localhost:8080/assets/public_app.js"
+      ]
+    },
     "react_app": {
       "css": [
         "http://localhost:8080/assets/react_app.css"

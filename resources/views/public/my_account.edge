@@ -1,0 +1,13 @@
+@layout('public/layout')
+
+@section('content')
+<h1>Olá, {{auth?.user.name}}</h1>
+<section>
+  <a href="#">Minha conta</a>
+  <a href="#">Endereços</a>
+  <a href="#">Meus pedidos</a>
+  <form action="{{route('/logout')}}" method="post">
+    <button>Sair</button>
+  </form>
+</section>
+@endsection

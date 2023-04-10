@@ -10,7 +10,7 @@ export default class SessionsController {
     const password = request.input('password')
     try {
       await auth.use('web').attempt(email, password)
-      return response.redirect('/')
+      return response.redirect().toRoute('/admin/products')
     } catch (error) {
       session.flash('error', 'Email ou senha incorretos.')
       console.error(error)
@@ -21,7 +21,7 @@ export default class SessionsController {
   public async logout({ auth, response }: HttpContextContract) {
     try {
       await auth.use('web').logout()
-      return response.redirect('/login')
+      return response.redirect('/admin/login')
     } catch (error) {
       console.error(error)
       return response.redirect().back()
