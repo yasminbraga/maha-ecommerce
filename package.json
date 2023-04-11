@@ -55,6 +55,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "pino-pretty": "^9.1.1",
     "prettier": "^2.8.3",
+    "styled-components": "^5.3.9",
     "typescript": "~4.6",
     "webpack": "^5.72",
     "webpack-cli": "^4.9.1",

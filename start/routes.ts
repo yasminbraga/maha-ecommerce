@@ -4,6 +4,9 @@ Route.group(() => {
   // Route.get('/') -- Landing page
   // Route.get('ingredients', 'ProductsController.index')
   // Route.get('aboutus', 'ProductsController.index')
+  Route.get('/', 'LandingpageController.index')
+  Route.on('app').render('app/index')
+  Route.on('quiz').render('public/quiz')
 
   Route.get('products', 'ProductsController.index')
   Route.get('signup', 'ClientsController.create')
@@ -28,6 +31,5 @@ Route.group(() => {
     Route.resource('kits', 'KitsController')
     Route.resource('users', 'UsersController')
     Route.resource('clients', 'ClientsController')
-    Route.on('app').render('app/index')
   }).middleware('auth')
 }).prefix('admin')

@@ -1,11 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Form } from './Form'
+import { Quiz } from './Quiz'
 
 const pages = [
   {
     Component: Form,
     id: 'form',
+  },
+  {
+    Component: Quiz,
+    id: 'quiz',
   },
 ]
 

@@ -6,12 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Maha Biocosméticos</title>
-  @entryPointStyles('app')
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+
+  @entryPointStyles('public_app')
+  @entryPointScripts('public_app')
+  @entryPointScripts('react_app')
 </head>
 
 <body>
-  {{-- @include('partials/sidebar')
-  @include('partials/header') --}}
+  {{-- @include('partials/sidebar') --}}
+  @include('public/partials/header')
 
   <main class="container">
     {{-- @include('partials/alerts') --}}
