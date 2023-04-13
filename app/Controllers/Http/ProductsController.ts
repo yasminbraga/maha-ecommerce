@@ -1,9 +1,9 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import File from 'App/Models/File'
 import Product from 'App/Models/Product'
-import ProductValidator from 'App/Validators/ProductValidator'
-import { formatPriceToCreate } from 'App/utils/formatPriceToCreate'
 import cloudinary from 'App/utils/cloudinary'
+import { formatPriceToCreate } from 'App/utils/formatPriceToCreate'
+import ProductValidator from 'App/Validators/ProductValidator'
 
 export default class ProductsController {
   public async index({ view, session, response }: HttpContextContract) {
@@ -37,7 +37,7 @@ export default class ProductsController {
         publicId: result.public_id,
       })
       session.flash('success', 'Produto criado com sucesso.')
-      return response.redirect().toRoute('ProductsController.index')
+      return response.redirect().toRoute('/admin/products')
     } catch (error) {
       console.error(error)
       session.flash('error', 'Erro ao criar produto.')
@@ -83,7 +83,7 @@ export default class ProductsController {
 
       await product.merge({ ...data, price: formatPriceToCreate(data.price) }).save()
       session.flash('success', 'Produto editado com sucesso.')
-      return response.redirect().toRoute('ProductsController.index')
+      return response.redirect().toRoute('/admin/products')
     } catch (error) {
       console.error(error)
       session.flash('error', 'Erro ao editar produto')
@@ -104,7 +104,7 @@ export default class ProductsController {
       await cloudinary.uploader.destroy(product.file.publicId)
       await product.delete()
       session.flash('success', 'Produto deletado com sucesso.')
-      return response.redirect().toRoute('ProductsController.index')
+      return response.redirect().toRoute('/admin/products')
     } catch (error) {
       console.error(error)
       session.flash('error', 'Erro ao deletar produto')

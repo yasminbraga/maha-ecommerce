@@ -60,6 +60,49 @@ section.links {
   display: none;
 }
 
+.card-grid {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.card img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.card-title {
+  text-transform: uppercase;
+  font-weight: 100;
+  color: #0d2601;
+}
+.card-p {
+  text-align: center;
+}
+
+.price {
+  color: #90a67b;
+  font-weight: 200;
+}
+
+.page-title {
+  text-align: center;
+  padding-top: 1rem;
+  font-weight: 500;
+  color: #0d2601;
+}
+
 @media (min-width: 1200px) {
   section.links {
     display: flex;
