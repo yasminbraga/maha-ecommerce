@@ -1,7 +1,22 @@
 import React, { FormEvent, useContext } from 'react'
+import styled from 'styled-components'
 import { QuizContext } from '../../contexts/QuizContext'
 
-// import { Container } from './styles';
+const Title = styled.h2`
+  text-transform: uppercase;
+  font-weight: 200;
+  padding: 1rem 0;
+`
+
+const RadioWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+`
+
+const Field = styled.div`
+  display: flex;
+  gap: 0.3rem;
+`
 
 const HairType: React.FC = () => {
   const { setData } = useContext(QuizContext)
@@ -12,14 +27,18 @@ const HairType: React.FC = () => {
 
   return (
     <div>
-      <h2>Qual o seu tipo de cabelo?</h2>
-      <div className="radio-wrapper" onChange={(e) => handleSetValue(e)}>
-        <label htmlFor="straight">Liso</label>
-        <input type="radio" id="straight" value="straight" />
+      <Title>Qual o seu tipo de cabelo?</Title>
+      <RadioWrapper onChange={(e) => handleSetValue(e)}>
+        <Field>
+          <input type="radio" id="straight" value="straight" />
+          <label htmlFor="straight">Liso</label>
+        </Field>
 
-        <label htmlFor="wavy">Ondulado</label>
-        <input type="radio" id="wavy" value="wavy" />
-      </div>
+        <Field>
+          <input type="radio" id="wavy" value="wavy" />
+          <label htmlFor="wavy">Ondulado</label>
+        </Field>
+      </RadioWrapper>
     </div>
   )
 }
