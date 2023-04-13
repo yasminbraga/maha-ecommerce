@@ -1,0 +1,33 @@
+@layout('public/layout')
+
+@section('content')
+<h1 class="page-title">Produtos</h1>
+
+<div class="card-grid">
+  @each(product in products)
+  <div class="card">
+    <img src="{{product.file.url}}" alt="{{product.name}}">
+    <h3 class="card-title">{{product.name}}</h3>
+    <p class="card-p">{{product.description}}</p>
+    <h3 class="price">{{product.formatedPrice}}</h3>
+  </div>
+  @endeach
+</div>
+
+<h1 class="page-title">Kits</h1>
+
+<div class="card-grid">
+  @each(kit in kits)
+  <div class="card">
+    <img src="{{kit.file.url}}" alt="{{kit.name}}">
+    <h3 class="card-title">{{kit.name}}</h3>
+    <p class="card-p">
+      @each(product in kit.products)
+      {{product.name}},
+      @endeach
+    </p>
+    <h3 class="price">{{kit.formatedPrice}}</h3>
+  </div>
+  @endeach
+</div>
+@endsection
