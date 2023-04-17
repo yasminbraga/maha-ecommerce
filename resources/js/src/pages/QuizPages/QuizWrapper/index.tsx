@@ -1,8 +1,20 @@
-import React from 'react'
-import { Container } from '../../Quiz/styles'
+import React, { ReactNode } from 'react'
+import { Container, Title } from '../../Quiz/styles'
 
-const QuizWrapper: React.FC = () => {
-  return <Container></Container>
+interface QuizWrapperType {
+  title: string
+  subtitle: string
+  children: ReactNode
+}
+
+const QuizWrapper: React.FC<QuizWrapperType> = ({ title, subtitle, children }) => {
+  return (
+    <Container>
+      <Title>{title}</Title>
+      <p>{subtitle}</p>
+      {children}
+    </Container>
+  )
 }
 
 export default QuizWrapper
