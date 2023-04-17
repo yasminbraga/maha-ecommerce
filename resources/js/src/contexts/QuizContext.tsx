@@ -1,7 +1,8 @@
 import React, { createContext, useState } from 'react'
+import HairSize from '../pages/QuizPages/HairSize'
 import HairStructure from '../pages/QuizPages/HairStructure'
 import HairType from '../pages/QuizPages/HairType'
-import Treatments from '../pages/QuizPages/Treatments'
+import Moisture from '../pages/QuizPages/Moisture'
 
 type QuizType = {
   step: number
@@ -21,14 +22,27 @@ export const QuizProvider = ({ children }) => {
   const pages = {
     1: <HairType />,
     2: <HairStructure />,
-    3: <Treatments />,
+    3: <HairSize />,
+    4: <Moisture />,
+    // 5: <Treatments />,
   }
   const totalPages = Object.keys(pages).length
   const [data, setData] = useState({
+    age: '',
     hairType: '',
-    HairStructure: '',
+    hairStructure: '',
+    hairSize: '',
+    scalpMoisture: '',
+    endsMoisture: '',
     treatments: [],
+    color: '',
+    washFrequence: [],
+    goals: [],
+    hairStyle: [],
+    workoutPlace: [],
+    workoutFrequence: [],
   })
+
   const canSubmit = step === totalPages
   // const hideSubmitBtn = step !== totalPages && 'hide-btn'
   return (

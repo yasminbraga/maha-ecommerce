@@ -17,7 +17,7 @@ const HairType: React.FC = () => {
   const { data, setData } = useContext(QuizContext)
   const handleSetValue = (e: FormEvent<HTMLDivElement>) => {
     const target = e.target as HTMLInputElement
-    setData({ ['hairType']: target.value })
+    setData({ ...data, ['hairType']: target.value })
   }
 
   return (
@@ -36,6 +36,16 @@ const HairType: React.FC = () => {
         <Field>
           <input type="radio" id="wavy" value="wavy" checked={data['hairType'] === 'wavy'} />
           <label htmlFor="wavy">Ondulado</label>
+        </Field>
+
+        <Field>
+          <input type="radio" id="curly" value="curly" checked={data['hairType'] === 'curly'} />
+          <label htmlFor="curly">Cacheado</label>
+        </Field>
+
+        <Field>
+          <input type="radio" id="coily" value="coily" checked={data['hairType'] === 'coily'} />
+          <label htmlFor="coily">Crespo</label>
         </Field>
       </RadioWrapper>
     </QuizWrapper>
