@@ -22,3 +22,7 @@ export const Button = styled.button`
   border-radius: 0.2rem;
   cursor: pointer;
 `
+export const Title = styled.h2`
+  text-transform: uppercase;
+  font-weight: 200;
+`

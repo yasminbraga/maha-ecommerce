@@ -1,14 +1,7 @@
 import React, { FormEvent, useContext } from 'react'
 import styled from 'styled-components'
 import { QuizContext } from '../../contexts/QuizContext'
-
-// import { Container } from './styles';
-
-const Title = styled.h2`
-  text-transform: uppercase;
-  font-weight: 200;
-  padding: 1rem 0;
-`
+import QuizWrapper from './QuizWrapper'
 
 const RadioWrapper = styled.div`
   display: flex;
@@ -26,9 +19,12 @@ const HairStructure: React.FC = () => {
     const target = e.target as HTMLInputElement
     setData({ ['hairStructure']: target.value })
   }
+
   return (
-    <div>
-      <Title>Qual é a espessura do seu fio?</Title>
+    <QuizWrapper
+      title="Qual a espessura do seu fio?"
+      subtitle="a expessura do seu fio é importante para a viscosidade"
+    >
       <RadioWrapper className="radio-wrapper" onChange={(e) => handleSetValue(e)}>
         <Field>
           <input type="radio" id="straight" value="straight" />
@@ -40,7 +36,7 @@ const HairStructure: React.FC = () => {
           <label htmlFor="wavy">Médio</label>
         </Field>
       </RadioWrapper>
-    </div>
+    </QuizWrapper>
   )
 }
 
