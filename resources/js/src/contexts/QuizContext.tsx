@@ -1,8 +1,17 @@
 import React, { createContext, useState } from 'react'
+
+import Age from '../pages/QuizPages/Age'
+import Color from '../pages/QuizPages/Color'
+import Goals from '../pages/QuizPages/Goals'
 import HairSize from '../pages/QuizPages/HairSize'
 import HairStructure from '../pages/QuizPages/HairStructure'
+import HairStyle from '../pages/QuizPages/HairStyle'
 import HairType from '../pages/QuizPages/HairType'
 import Moisture from '../pages/QuizPages/Moisture'
+import Treatments from '../pages/QuizPages/Treatments'
+import WashFrequence from '../pages/QuizPages/WashFrequence'
+import WorkoutFrequence from '../pages/QuizPages/WorkoutFrequence'
+import WorkoutPlace from '../pages/QuizPages/WorkoutPlace'
 
 type QuizType = {
   step: number
@@ -24,7 +33,14 @@ export const QuizProvider = ({ children }) => {
     2: <HairStructure />,
     3: <HairSize />,
     4: <Moisture />,
-    // 5: <Treatments />,
+    5: <Age />,
+    6: <Treatments />,
+    7: <Color />,
+    8: <WashFrequence />,
+    9: <HairStyle />,
+    10: <WorkoutPlace />,
+    11: <WorkoutFrequence />,
+    12: <Goals />,
   }
   const totalPages = Object.keys(pages).length
   const [data, setData] = useState({
@@ -36,11 +52,11 @@ export const QuizProvider = ({ children }) => {
     endsMoisture: '',
     treatments: [],
     color: '',
-    washFrequence: [],
-    goals: [],
+    washFrequence: '',
     hairStyle: [],
     workoutPlace: [],
-    workoutFrequence: [],
+    workoutFrequence: '',
+    goals: [],
   })
 
   const canSubmit = step === totalPages

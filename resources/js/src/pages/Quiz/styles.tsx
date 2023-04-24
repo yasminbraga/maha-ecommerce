@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,8 +21,4 @@ export const Button = styled.button`
   border: 1px solid #90a67b;
   border-radius: 0.2rem;
   cursor: pointer;
-`
-export const Title = styled.h2`
-  text-transform: uppercase;
-  font-weight: 200;
 `

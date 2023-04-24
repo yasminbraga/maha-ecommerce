@@ -8,6 +8,8 @@ Route.group(() => {
   Route.on('app').render('app/index')
   Route.on('quiz').render('public/quiz')
 
+  Route.post('quiz', 'QuizController.store')
+
   Route.get('products', 'ProductsController.index')
   Route.get('signup', 'ClientsController.create')
   Route.post('signup', 'ClientsController.store')

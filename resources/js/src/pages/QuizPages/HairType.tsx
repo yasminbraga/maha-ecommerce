@@ -44,7 +44,13 @@ const HairType: React.FC = () => {
         </Field>
 
         <Field>
-          <input type="radio" id="coily" value="coily" checked={data['hairType'] === 'coily'} />
+          <input
+            type="radio"
+            id="coily"
+            value="coily"
+            checked={data['hairType'] === 'coily'}
+            readOnly
+          />
           <label htmlFor="coily">Crespo</label>
         </Field>
       </RadioWrapper>
