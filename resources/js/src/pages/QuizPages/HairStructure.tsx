@@ -14,10 +14,10 @@ const Field = styled.div`
 `
 
 const HairStructure: React.FC = () => {
-  const { setData } = useContext(QuizContext)
+  const { data, setData } = useContext(QuizContext)
   const handleSetValue = (e: FormEvent<HTMLDivElement>) => {
     const target = e.target as HTMLInputElement
-    setData({ ['hairStructure']: target.value })
+    setData({ ...data, ['hairStructure']: target.value })
   }
 
   return (
@@ -27,13 +27,28 @@ const HairStructure: React.FC = () => {
     >
       <RadioWrapper className="radio-wrapper" onChange={(e) => handleSetValue(e)}>
         <Field>
-          <input type="radio" id="straight" value="straight" />
-          <label htmlFor="straight">Fino</label>
+          <input type="radio" id="fine" value="fine" checked={data['hairStructure'] === 'fine'} />
+          <label htmlFor="fine">Fino</label>
         </Field>
 
         <Field>
-          <input type="radio" id="wavy" value="wavy" />
-          <label htmlFor="wavy">Médio</label>
+          <input
+            type="radio"
+            id="medium"
+            value="medium"
+            checked={data['hairStructure'] === 'medium'}
+          />
+          <label htmlFor="medium">Médio</label>
+        </Field>
+
+        <Field>
+          <input
+            type="radio"
+            id="coarse"
+            value="coarse"
+            checked={data['hairStructure'] === 'coarse'}
+          />
+          <label htmlFor="coarse">Grosso</label>
         </Field>
       </RadioWrapper>
     </QuizWrapper>

@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Container, Title } from '../../Quiz/styles'
-
+import { Container, Title } from './styles'
 interface QuizWrapperType {
   title: string
   subtitle: string
