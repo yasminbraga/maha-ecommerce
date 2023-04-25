@@ -6,29 +6,26 @@ const Goals: React.FC = () => {
   const { data, setData } = useContext(QuizContext)
 
   const handleSetValue = (e: FormEvent<HTMLDivElement>) => {
-    let updatedList = [...data['treatments']]
+    let updatedList = [...data['goals']]
     const target = e.target as HTMLInputElement
 
     if (target.checked) {
-      updatedList = [...data['treatments'], target.value]
+      updatedList = [...data['goals'], target.value]
     } else {
-      updatedList.splice(data['treatments'].indexOf(target.value), 1)
+      updatedList.splice(data['goals'].indexOf(target.value), 1)
     }
-    setData({ ...data, ['treatments']: updatedList })
+    setData({ ...data, ['goals']: updatedList })
   }
 
   return (
-    <QuizWrapper
-      title="Qual o tratamento químico feito no seu cabelo?"
-      subtitle="Selecione todos os tratamentos realizados por último no seu cabelo"
-    >
+    <QuizWrapper title="Qual os objetivos?" subtitle="Selecione cinco">
       <div>
         <input
           type="checkbox"
           id="anti_frizz"
           value="anti_frizz"
           onChange={handleSetValue}
-          checked={data['treatments'].includes('anti_frizz')}
+          checked={data['goals'].includes('anti_frizz')}
         />
         <label htmlFor="anti_frizz">Anti-Frizz</label>
       </div>
@@ -39,7 +36,7 @@ const Goals: React.FC = () => {
           id="shine"
           value="shine"
           onChange={handleSetValue}
-          checked={data['treatments'].includes('shine')}
+          checked={data['goals'].includes('shine')}
         />
         <label htmlFor="shine">Brilho</label>
       </div>
@@ -55,7 +52,7 @@ const Goals: React.FC = () => {
           id="hydrate"
           value="hydrate"
           onChange={handleSetValue}
-          checked={data['treatments'].includes('hydrate')}
+          checked={data['goals'].includes('hydrate')}
         />
         <label htmlFor="hydrate">Hidratação</label>
       </div>
@@ -66,17 +63,30 @@ const Goals: React.FC = () => {
           id="curl_definition"
           value="curl_definition"
           onChange={handleSetValue}
+          checked={data['goals'].includes('curl_definition')}
         />
         <label htmlFor="curl_definition">Definição de cachos</label>
       </div>
 
       <div>
-        <input type="checkbox" id="lengthen" value="lengthen" onChange={handleSetValue} />
+        <input
+          type="checkbox"
+          id="lengthen"
+          value="lengthen"
+          onChange={handleSetValue}
+          checked={data['goals'].includes('lengthen')}
+        />
         <label htmlFor="lengthen">Crescimento</label>
       </div>
 
       <div>
-        <input type="checkbox" id="strengthen" value="strengthen" onChange={handleSetValue} />
+        <input
+          type="checkbox"
+          id="strengthen"
+          value="strengthen"
+          onChange={handleSetValue}
+          checked={data['goals'].includes('strengthen')}
+        />
         <label htmlFor="strengthen">Fortificação dos fios</label>
       </div>
     </QuizWrapper>
