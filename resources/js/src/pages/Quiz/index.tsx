@@ -1,12 +1,13 @@
-import React, { FormEvent, useContext } from 'react'
-import { QuizContext } from '../../contexts/QuizContext'
+import React, { useContext, useState } from 'react'
+import { QuizContext, validations } from '../../contexts/QuizContext'
 import api from '../../services/api'
 import { Button, ButtonContainer, FormContainer, Header } from './styles'
 
 export const Quiz: React.FC = () => {
   const { data, step, setStep, pages, totalPages } = useContext(QuizContext)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e: FormEvent<HTMLDivElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     try {
       return api.post('/quiz', { data })
@@ -14,23 +15,44 @@ export const Quiz: React.FC = () => {
       return console.log(error)
     }
   }
+
+  const disabledNext = () => {
+    const validation = validations[step]
+    if (validation) {
+      const validate = validation(data[Object.keys(data)[step]])
+      if (validate.error) {
+        setError(validate.message)
+        return
+      }
+    }
+    setStep(step + 1)
+  }
+
   return (
     <FormContainer onSubmit={handleSubmit}>
+      <p>{error}</p>
       <Header>
         <h2>
-          {step}/{totalPages}
+          {step + 1}/{totalPages}
         </h2>
       </Header>
 
       {pages[step]}
+
       <ButtonContainer>
-        <Button type="button" onClick={() => setStep(step - 1)}>
-          Voltar
-        </Button>
-        <Button type="button" onClick={() => setStep(step + 1)}>
-          Avançar
-        </Button>
-        <button type="submit">Submeter</button>
+        {step > 0 ? (
+          <Button disabled={step <= 0} type="button" onClick={() => setStep(step - 1)}>
+            Voltar
+          </Button>
+        ) : null}
+
+        {step < totalPages - 1 ? (
+          <Button type="button" onClick={disabledNext}>
+            Avançar
+          </Button>
+        ) : (
+          <button type="submit">Enviar</button>
+        )}
       </ButtonContainer>
     </FormContainer>
   )

@@ -2,12 +2,14 @@ import React, { createContext, useState } from 'react'
 
 import Age from '../pages/QuizPages/Age'
 import Color from '../pages/QuizPages/Color'
+import EndsMoisture from '../pages/QuizPages/EndsMoisture'
+import FormulaName from '../pages/QuizPages/FormulaName'
 import Goals from '../pages/QuizPages/Goals'
 import HairSize from '../pages/QuizPages/HairSize'
 import HairStructure from '../pages/QuizPages/HairStructure'
 import HairStyle from '../pages/QuizPages/HairStyle'
 import HairType from '../pages/QuizPages/HairType'
-import Moisture from '../pages/QuizPages/Moisture'
+import ScalpMoisture from '../pages/QuizPages/ScalpMoisture'
 import Treatments from '../pages/QuizPages/Treatments'
 import WashFrequence from '../pages/QuizPages/WashFrequence'
 import WorkoutFrequence from '../pages/QuizPages/WorkoutFrequence'
@@ -20,19 +22,35 @@ type QuizType = {
   data: {}
   setData: React.Dispatch<React.SetStateAction<{}>>
   totalPages: number
-  canSubmit: boolean
-  // hideSubmitBtn: string | false
+}
+
+type QuizDataType = {
+  hairType: string
+  hairStructure: string
+  hairSize: string
+  scalpMoisture: string
+  endsMoisture: string
+  age: string
+  treatments: Array<string>
+  color: string
+  washFrequence: string
+  hairStyle: Array<string>
+  workoutPlace: Array<string>
+  workoutFrequence: string
+  goals: Array<string>
+  formulaName: string
 }
 export const QuizContext = createContext({} as QuizType)
 
 export const QuizProvider = ({ children }) => {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(0)
 
   const pages = {
-    1: <HairType />,
-    2: <HairStructure />,
-    3: <HairSize />,
-    4: <Moisture />,
+    0: <HairType />,
+    1: <HairStructure />,
+    2: <HairSize />,
+    3: <ScalpMoisture />,
+    4: <EndsMoisture />,
     5: <Age />,
     6: <Treatments />,
     7: <Color />,
@@ -41,15 +59,16 @@ export const QuizProvider = ({ children }) => {
     10: <WorkoutPlace />,
     11: <WorkoutFrequence />,
     12: <Goals />,
+    13: <FormulaName />,
   }
-  const totalPages = Object.keys(pages).length
-  const [data, setData] = useState({
-    age: '',
+
+  const [data, setData] = useState<QuizDataType>({
     hairType: '',
     hairStructure: '',
     hairSize: '',
     scalpMoisture: '',
     endsMoisture: '',
+    age: '',
     treatments: [],
     color: '',
     washFrequence: '',
@@ -57,13 +76,52 @@ export const QuizProvider = ({ children }) => {
     workoutPlace: [],
     workoutFrequence: '',
     goals: [],
+    formulaName: '',
   })
 
-  const canSubmit = step === totalPages
-  // const hideSubmitBtn = step !== totalPages && 'hide-btn'
+  const totalPages = Object.keys(pages).length
+
   return (
-    <QuizContext.Provider value={{ step, setStep, pages, data, setData, totalPages, canSubmit }}>
+    <QuizContext.Provider
+      value={{
+        step,
+        setStep,
+        pages,
+        data,
+        setData,
+        totalPages,
+      }}
+    >
       {children}
     </QuizContext.Provider>
   )
+}
+
+const isNotNull = (data: string) => {
+  if (!data) {
+    return { error: true, message: 'Campo vazio' }
+  }
+  return { error: false }
+}
+
+const isNotEmpty = (data: any[]) => {
+  if (!data.length) {
+    return { error: true, message: 'Selecione um' }
+  }
+  return { error: false }
+}
+
+const isNotEmptAndGreaterThan5 = (data: any[]) => {
+  if (!data.length) {
+    return { error: true, message: 'Obrigatório Preencher' }
+  } else if (data.length < 5) {
+    return { error: true, message: 'Selecione no mínimo 5' }
+  }
+  return { error: false }
+}
+export const validations = {
+  0: isNotNull,
+  1: isNotNull,
+  6: isNotEmpty,
+  12: isNotEmptAndGreaterThan5,
 }
