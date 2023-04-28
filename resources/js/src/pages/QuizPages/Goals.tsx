@@ -42,7 +42,13 @@ const Goals: React.FC = () => {
       </div>
 
       <div>
-        <input type="checkbox" id="oil_control" value="oil_control" onChange={handleSetValue} />
+        <input
+          type="checkbox"
+          id="oil_control"
+          value="oil_control"
+          onChange={handleSetValue}
+          checked={data['goals'].includes('oil_control')}
+        />
         <label htmlFor="oil_control">Controle de oleosidade</label>
       </div>
 

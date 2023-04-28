@@ -52,7 +52,13 @@ const Treatments: React.FC = () => {
       </div>
 
       <div>
-        <input type="checkbox" id="bleached" value="bleached" onChange={handleSetValue} />
+        <input
+          type="checkbox"
+          id="bleached"
+          value="bleached"
+          onChange={handleSetValue}
+          checked={data['treatments'].includes('bleached')}
+        />
         <label htmlFor="bleached">Descoloração</label>
       </div>
 

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { QuizContext } from '../../contexts/QuizContext'
+import { QuizContext, validations } from '../../contexts/QuizContext'
 import api from '../../services/api'
 import { Button, ButtonContainer, FormContainer, Header } from './styles'
 
@@ -17,16 +17,15 @@ export const Quiz: React.FC = () => {
   }
 
   const disabledNext = () => {
-    if (
-      data[Object.keys(data)[step]] === null ||
-      (data[Object.keys(data)[step]].length === 0 && Object.keys(data)[step] !== 'goals')
-    ) {
-      setError('Campo vazio')
-    } else if (Object.keys(data)[step] === 'goals' && data['goals'].length < 5) {
-      setError('Selecione 5')
-    } else {
-      setStep(step + 1)
+    const validation = validations[step]
+    if (validation) {
+      const validate = validation(data[Object.keys(data)[step]])
+      if (validate.error) {
+        setError(validate.message)
+        return
+      }
     }
+    setStep(step + 1)
   }
 
   return (
@@ -39,14 +38,21 @@ export const Quiz: React.FC = () => {
       </Header>
 
       {pages[step]}
+
       <ButtonContainer>
-        <Button type="button" onClick={() => setStep(step - 1)}>
-          Voltar
-        </Button>
-        <Button type="button" onClick={disabledNext}>
-          Avançar
-        </Button>
-        <button type="submit">Submeter</button>
+        {step > 0 ? (
+          <Button disabled={step <= 0} type="button" onClick={() => setStep(step - 1)}>
+            Voltar
+          </Button>
+        ) : null}
+
+        {step < totalPages - 1 ? (
+          <Button type="button" onClick={disabledNext}>
+            Avançar
+          </Button>
+        ) : (
+          <button type="submit">Enviar</button>
+        )}
       </ButtonContainer>
     </FormContainer>
   )

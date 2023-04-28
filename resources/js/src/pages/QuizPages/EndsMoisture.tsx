@@ -22,7 +22,7 @@ const EndsMoisture: React.FC = () => {
   }
   return (
     <QuizWrapper
-      title="Como é a oleosidade do seu cabelo na raiz?"
+      title="Como é a oleosidade do seu cabelo nas pontas?"
       subtitle="Quanto a oleosidade do seu cabelo no momento"
     >
       <RadioWrapper onChange={(e) => handleSetValue(e)}>
