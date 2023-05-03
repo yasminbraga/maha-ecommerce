@@ -1,6 +1,7 @@
 import Hash from '@ioc:Adonis/Core/Hash'
-import { BaseModel, beforeSave, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, HasMany, beforeSave, column, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import { DateTime } from 'luxon'
+import Quiz from './Quiz'
 
 export default class Client extends BaseModel {
   @column({ isPrimary: true })
@@ -20,6 +21,9 @@ export default class Client extends BaseModel {
 
   @column()
   public rememberMeToken: string | null
+
+  @hasMany(() => Quiz)
+  public quizzes: HasMany<typeof Quiz>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

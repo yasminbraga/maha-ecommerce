@@ -1,14 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { QuizProvider } from '../contexts/QuizContext'
-import { Form } from './Form'
 import { Quiz } from './Quiz'
 
 const pages = [
-  {
-    Component: <Form />,
-    id: 'form',
-  },
   {
     Component: (
       <QuizProvider>

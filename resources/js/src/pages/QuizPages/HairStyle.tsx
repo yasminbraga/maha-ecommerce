@@ -6,7 +6,6 @@ const HairStyle: React.FC = () => {
 
   const handleSetValue = (e: FormEvent<HTMLDivElement>) => {
     let updatedList = [...data['hairStyle']]
-    console.log(updatedList)
     const target = e.target as HTMLInputElement
 
     if (target.checked) {

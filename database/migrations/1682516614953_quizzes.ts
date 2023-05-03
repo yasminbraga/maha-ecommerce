@@ -15,7 +15,7 @@ export default class extends BaseSchema {
       table.string('treatments')
       table.enum('color', ['blonde', 'black', 'brunette', 'red', 'gray_silver', 'fashion_color'])
       table.string('wash_frequence')
-      table.enum('hair_style', ['dry', 'balanced', 'oily'])
+      table.string('hair_style')
       table.string('workout_place')
       table.string('workout_frequence')
       table.string('goals')
