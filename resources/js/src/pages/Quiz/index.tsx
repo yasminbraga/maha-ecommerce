@@ -7,10 +7,11 @@ export const Quiz: React.FC = () => {
   const { data, step, setStep, pages, totalPages } = useContext(QuizContext)
   const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      return api.post('/quiz', { data })
+      const response = await api.post('/quiz', { data })
+      window.location.replace('/result')
     } catch (error) {
       return console.log(error)
     }

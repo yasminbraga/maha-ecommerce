@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react'
 
 import Age from '../pages/QuizPages/Age'
 import Color from '../pages/QuizPages/Color'
+import Email from '../pages/QuizPages/Email'
 import EndsMoisture from '../pages/QuizPages/EndsMoisture'
 import FormulaName from '../pages/QuizPages/FormulaName'
 import Goals from '../pages/QuizPages/Goals'
@@ -39,6 +40,7 @@ type QuizDataType = {
   workoutFrequence: string
   goals: Array<string>
   formulaName: string
+  email: string
 }
 export const QuizContext = createContext({} as QuizType)
 
@@ -60,6 +62,7 @@ export const QuizProvider = ({ children }) => {
     11: <WorkoutFrequence />,
     12: <Goals />,
     13: <FormulaName />,
+    14: <Email />,
   }
 
   const [data, setData] = useState<QuizDataType>({
@@ -77,6 +80,7 @@ export const QuizProvider = ({ children }) => {
     workoutFrequence: '',
     goals: [],
     formulaName: '',
+    email: '',
   })
 
   const totalPages = Object.keys(pages).length
