@@ -6,13 +6,14 @@ export default class QuizController {
   public async index({ view }: HttpContextContract) {
     return view.render('public/result')
   }
-  public async store({ request }: HttpContextContract) {
+  public async store({ request, auth }: HttpContextContract) {
     const { data } = request.body()
-    const { email, ...formData } = data
+    const { ...formData } = data
     console.log(data)
+    console.log(auth.user)
 
     try {
-      const client = await Client.firstOrCreate({ email })
+      const client = await Client.findByOrFail('email', auth.user!.email)
       const quiz = await Quiz.create({ clientId: client.id, ...formData })
       return console.log(quiz)
     } catch (error) {

@@ -8,14 +8,21 @@ export default class SessionsController {
 
   public async store({ request, response, auth, session }: HttpContextContract) {
     const { email, password } = await request.validate(ClientLoginValidator)
+    const { redirectUrl } = request.qs()
+
     try {
       await auth.use('webClient').attempt(email, password)
+
+      if (redirectUrl) {
+        return response.redirect().toRoute(redirectUrl)
+      }
+
       return response.redirect().toRoute('/my-account')
     } catch (error) {
       console.error(error)
       session.flash('error', 'Email ou senha incorretos.')
       console.error(error)
-      return response.redirect().back()
+      return response.redirect().withQs().back()
     }
   }
 

@@ -13,15 +13,22 @@ export default class ClientsController {
     }
   }
 
-  public async create({ view }: HttpContextContract) {
-    return view.render('public/signup')
+  public async create({ view, request }: HttpContextContract) {
+    const referer = request.header('referer')
+    return view.render('public/signup', { referer })
   }
 
   public async store({ auth, request, response, session }: HttpContextContract) {
     const data = await request.validate(ClientValidator)
+
+    const { referer } = request.qs()
+
     try {
       await Client.create(data)
       await auth.use('webClient').attempt(data.email, data.password)
+      if (referer.includes('quiz')) {
+        return response.redirect().toRoute('/quiz')
+      }
       return response.redirect().toRoute('/my-account')
     } catch (error) {
       console.log(error)

@@ -17,8 +17,9 @@
     <div class="form-container">
       <h2 class="card-title">Criar conta</h2>
       <p>Já possui conta? <a href="{{route('/signin')}}">Login</a></p>
+      {{inspect(referer)}}
 
-      <form action="{{route('/signup')}}" method="post">
+      <form action="{{route('/signup', {}, { qs: {referer: referer} })}}" method="post">
         <div class="field">
           <label for="name">Nome</label>
           <input type="text" name="name" id="name" placeholder="Seu nome">
