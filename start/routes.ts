@@ -1,9 +1,6 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  // Route.get('/') -- Landing page
-  // Route.get('ingredients', 'ProductsController.index')
-  // Route.get('aboutus', 'ProductsController.index')
   Route.get('/', 'LandingpageController.index')
 
   Route.get('products', 'ProductsController.index')
@@ -15,10 +12,10 @@ Route.group(() => {
   Route.get('reset-password', 'SessionsController.resetPage')
   Route.post('reset-password', 'SessionsController.resetPassword')
 
-  Route.on('quiz').render('public/quiz')
-  Route.post('quiz', 'QuizController.store')
   Route.get('/result', 'QuizController.index')
   Route.group(() => {
+    Route.on('quiz').render('public/quiz')
+    Route.post('quiz', 'QuizController.store')
     Route.get('my-account', 'ClientsController.index')
   }).middleware(['auth:webClient'])
 }).namespace('App/Controllers/Http/Public')

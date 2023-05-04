@@ -18,7 +18,7 @@
       <h2 class="card-title">Fazer login</h2>
       <p>Não tem conta? <a href="{{route('/signup')}}">Inscreva-se</a></p>
 
-      <form action="{{route('/signin')}}" method="post">
+      <form action="{{route('/signin', {}, { qs: request.qs() })}}" method="post">
         <div class="field">
           <label for="email">Email</label>
           <input type="email" name="email" id="email" placeholder="email@email.com">

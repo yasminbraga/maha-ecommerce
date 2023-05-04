@@ -23,7 +23,11 @@ export default class AuthMiddleware {
    * of the mentioned guards and that guard will be used by the rest of the code
    * during the current request.
    */
-  protected async authenticate(auth: HttpContextContract['auth'], guards: (keyof GuardsList)[]) {
+  protected async authenticate(
+    auth: HttpContextContract['auth'],
+    guards: (keyof GuardsList)[],
+    redirectUrl: string
+  ) {
     /**
      * Hold reference to the guard last attempted within the for loop. We pass
      * the reference of the guard to the "AuthenticationException", so that
@@ -34,7 +38,7 @@ export default class AuthMiddleware {
 
     for (let guard of guards) {
       guardLastAttempted = guard
-      this.setRedirectToByGuard(guard)
+      this.setRedirectToByGuard(guard, redirectUrl)
 
       if (await auth.use(guard).check()) {
         /**
@@ -57,10 +61,10 @@ export default class AuthMiddleware {
     )
   }
 
-  private setRedirectToByGuard(guard: keyof GuardsList) {
+  private setRedirectToByGuard(guard: keyof GuardsList, redirectUrl: string) {
     switch (guard) {
       case 'webClient':
-        this.redirectTo = '/signin'
+        this.redirectTo = `/signin?redirectUrl=${redirectUrl}`
         break
       default:
       case 'web':
@@ -73,7 +77,7 @@ export default class AuthMiddleware {
    * Handle request
    */
   public async handle(
-    { auth }: HttpContextContract,
+    { auth, request }: HttpContextContract,
     next: () => Promise<void>,
     customGuards: (keyof GuardsList)[]
   ) {
@@ -82,7 +86,8 @@ export default class AuthMiddleware {
      * the config file
      */
     const guards = customGuards.length ? customGuards : [auth.name]
-    await this.authenticate(auth, guards)
+    const redirectUrl = request.url(true)
+    await this.authenticate(auth, guards, redirectUrl)
     await next()
   }
 }
