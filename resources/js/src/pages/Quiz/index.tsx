@@ -11,7 +11,7 @@ export const Quiz: React.FC = () => {
     e.preventDefault()
     try {
       const response = await api.post('/quiz', { data })
-      // window.location.replace('/result')
+      window.location.replace('/result')
     } catch (error) {
       return console.log(error)
     }
