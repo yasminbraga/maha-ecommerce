@@ -9,8 +9,6 @@ export default class QuizController {
   public async store({ request, auth }: HttpContextContract) {
     const { data } = request.body()
     const { ...formData } = data
-    console.log(data)
-    console.log(auth.user)
 
     try {
       const client = await Client.findByOrFail('email', auth.user!.email)
