@@ -1,9 +1,12 @@
 @layout('public/layout')
 
 @section('content')
-<h1>Respostas Enviadas!</h1>
-<p>
-  Uma fórmula personalizada especialmente para você será enviada para o seu email! Enquanto isso, cheque os nossos
-  ingredientes e produtos que fazemos.
-</p>
+<div>
+  <p>Resultado</p>
+  <h1>Fórmula {{client.quizzes[0].formulaName}}</h1>
+  <p>
+    Resumo da fórmula
+  </p>
+  <a href="/cart">Avançar</a>
+</div>
 @endsection
