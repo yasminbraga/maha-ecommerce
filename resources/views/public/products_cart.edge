@@ -1,0 +1,5 @@
+@layout('public/layout')
+
+@section('content')
+<div id="list-products" data-products={{encodeURI(JSON.stringify(products))}}></div>
+@endsection

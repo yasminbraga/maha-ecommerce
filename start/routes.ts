@@ -12,9 +12,10 @@ Route.group(() => {
   Route.get('reset-password', 'SessionsController.resetPage')
   Route.post('reset-password', 'SessionsController.resetPassword')
 
-  Route.get('/result', 'QuizController.index')
   Route.group(() => {
+    Route.get('/result', 'QuizController.index')
     Route.on('quiz').render('public/quiz')
+    Route.resource('cart', 'CartController')
     Route.post('quiz', 'QuizController.store')
     Route.get('my-account', 'ClientsController.index')
   }).middleware(['auth:webClient'])

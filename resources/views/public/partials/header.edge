@@ -12,8 +12,12 @@
 
   <section class="links">
     <a href="/quiz">Crie sua fórmula</a>
+    @if(auth.user)
+    <a href="/my-account">Minha conta</a>
+    @else
     <a href="/signin">Login</a>
-    <a href="">
+    @endif
+    <a href="/cart">
       <i class="material-icons-outlined md-18">shopping_cart</i>
     </a>
   </section>

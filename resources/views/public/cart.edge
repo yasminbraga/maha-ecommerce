@@ -1,0 +1,6 @@
+@layout('public/layout')
+
+@section('content')
+<div id="cart" auth-data={{encodeURI(JSON.stringify({name: auth.user.name, email: auth.user.email}))}}
+  data-products={{encodeURI(JSON.stringify(products))}}></div>
+@endsection
