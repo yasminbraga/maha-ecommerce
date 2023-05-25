@@ -1,66 +1,66 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { ProductProvider } from '../../contexts/ProductContext'
-import { CartContent } from './styles'
+import { useNavigate } from 'react-router-dom'
+import Product from '../../components/Product'
+import { useCartContext } from '../../contexts/CartContext'
+import api from '../../services/api'
+import { CartContent, PrimaryButton, Summary, TotalContainer } from './styles'
 
-interface PropsType {
-  authData: {
-    name: string
-    email: string
-  }
-  products: Array<{
-    name: string
-    description: string
-    price: number
-    file: {
-      url: string
-    }
-  }>
+export type ProductType = {
+  id: number
+  name: string
+  description: string
+  price: number
+  file: { url: string }
+  quantity: number
 }
 
-const Cart = ({ authData, products }: PropsType) => {
+const Cart = () => {
+  const { user, cartProducts, total } = useCartContext()
+  const navigate = useNavigate()
+  const handleSubmit = async () => {
+    try {
+      const productsIds = cartProducts.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+      }))
+      const data = { total, productsIds }
+      await api.post('/order', { data })
+      navigate('/app/payment')
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       <h1>Carrinho</h1>
       <CartContent>
         <div>
           <h2>Informações do usuário</h2>
-          <p>{authData.name}</p>
-          <p>{authData.email}</p>
+          <p>{user.name}</p>
+          <p>{user.email}</p>
         </div>
-        <div>
-          <h2>Resumo do pedido</h2>
-          {products.map((product) => (
-            <div>
-              <h3>{product.name}</h3>
-              <p>{product.description}</p>
-              <span>{product.price}</span>
-              <div>
-                <button type="button">+</button>
-                <p>1</p>
-                <button type="button">-</button>
-              </div>
+        <Summary>
+          <h3>Resumo do pedido</h3>
+          {cartProducts.map((product: ProductType) => (
+            <div key={product.id}>
+              <Product {...product} />
             </div>
           ))}
-        </div>
+
+          <TotalContainer>
+            <h5>Subtotal</h5>
+            <h5>{total}</h5>
+          </TotalContainer>
+          <TotalContainer>
+            <h5>Total</h5>
+            <h5>{total}</h5>
+          </TotalContainer>
+          <PrimaryButton type="button" onClick={handleSubmit}>
+            Confirmar pedido
+          </PrimaryButton>
+        </Summary>
       </CartContent>
     </>
   )
 }
-
-const container = document.getElementById('cart')
-if (container) {
-  const root = ReactDOM.createRoot(container)
-  const authData = container.getAttribute('auth-data')
-  const products = container.getAttribute('data-products')
-  if (authData && products) {
-    root.render(
-      <ProductProvider>
-        <Cart
-          authData={JSON.parse(decodeURI(authData))}
-          products={JSON.parse(decodeURI(products))}
-        />
-      </ProductProvider>
-    )
-  }
-}
+export default Cart

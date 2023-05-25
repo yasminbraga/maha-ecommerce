@@ -1,0 +1,5 @@
+@layout('public/layout')
+
+@section('content')
+<div id="app" auth-data={{encodeURI(JSON.stringify({name: auth.user.name, email: auth.user.email}))}}></div>
+@endsection
