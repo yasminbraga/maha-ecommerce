@@ -1,6 +1,7 @@
 import { BaseModel, HasOne, ManyToMany, column, hasOne, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import { DateTime } from 'luxon'
 import Client from './Client'
+import OrderPaymentDetail from './OrderPayment'
 import Product from './Product'
 
 export default class Order extends BaseModel {
@@ -18,6 +19,9 @@ export default class Order extends BaseModel {
 
   @hasOne(() => Client)
   public client: HasOne<typeof Client>
+
+  @hasOne(() => OrderPaymentDetail)
+  public orderPaymentDetail: HasOne<typeof OrderPaymentDetail>
 
   @manyToMany(() => Product, { pivotTable: 'order_product' })
   public products: ManyToMany<typeof Product>

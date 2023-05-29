@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { createSearchParams, useNavigate } from 'react-router-dom'
 import Product from '../../components/Product'
 import { useCartContext } from '../../contexts/CartContext'
 import api from '../../services/api'
@@ -17,6 +17,7 @@ export type ProductType = {
 const Cart = () => {
   const { user, cartProducts, total } = useCartContext()
   const navigate = useNavigate()
+
   const handleSubmit = async () => {
     try {
       const productsIds = cartProducts.map((item) => ({
@@ -24,12 +25,16 @@ const Cart = () => {
         quantity: item.quantity,
       }))
       const data = { total, productsIds }
-      await api.post('/order', { data })
-      navigate('/app/payment')
+      const response = await api.post('/order', { data })
+      navigate({
+        pathname: '/payment',
+        search: createSearchParams({ orderId: response.data.orderId }).toString(),
+      })
     } catch (error) {
       console.log(error)
     }
   }
+
   return (
     <>
       <h1>Carrinho</h1>
