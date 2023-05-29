@@ -18,6 +18,7 @@ Route.group(() => {
     Route.on('quiz').render('public/quiz')
     Route.post('quiz', 'QuizController.store')
     Route.post('order', 'OrdersController.store')
+    Route.post('payment', 'OrdersController.payment')
     Route.get('my-account', 'ClientsController.index')
   }).middleware(['auth:webClient'])
 }).namespace('App/Controllers/Http/Public')
