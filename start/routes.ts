@@ -33,5 +33,6 @@ Route.group(() => {
     Route.resource('kits', 'KitsController')
     Route.resource('users', 'UsersController')
     Route.resource('clients', 'ClientsController')
+    Route.resource('orders', 'OrdersController')
   }).middleware('auth')
 }).prefix('admin')

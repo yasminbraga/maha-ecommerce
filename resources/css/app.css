@@ -391,6 +391,45 @@ table thead th {
   gap: 1rem;
 }
 
+.table-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  display: flex;
+  color: var(--dark-green);
+  font-weight: 500;
+}
+
+.status-container {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  width: max-content;
+}
+
+.status-container.pending {
+  background-color: #faedcd;
+  color: #e09f3e;
+}
+
+.status-container.confirmed {
+  background-color: var(--extra-light-green);
+  color: var(--medium-green);
+}
+
+.status-container.shipped {
+  background-color: var(--extra-light-gray);
+  color: var(--text-gray);
+}
+
+.status-container.cancelled {
+  background-color: var(--light-error);
+  color: var(--error-color);
+}
+
 @media (max-width: 750px) {
   table {
     overflow: hidden;
