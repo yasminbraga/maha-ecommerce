@@ -11,7 +11,8 @@
       "App/*": ["./app/*"],
       "Config/*": ["./config/*"],
       "Contracts/*": ["./contracts/*"],
-      "Database/*": ["./database/*"]
+      "Database/*": ["./database/*"],
+      "utils/*": ["./utils/*"]
     },
     "lib": ["DOM"],
     "types": [
