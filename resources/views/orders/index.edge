@@ -49,17 +49,9 @@
         </div>
       </td>
       <td>
-        {{-- <div class=" action">
-          <a href="{{route('ProductsController.edit', {id: product.id})}}">
-            <i class="material-icons-outlined md-light-gray">edit</i>
-          </a>
-          <form action="{{route('ProductsController.destroy', {id: product.id})}}?_method=DELETE" method="post"
-            class="confirm-destroy">
-            <button type="button" class="reset-btn">
-              <i class="material-icons-outlined md-red">delete</i>
-            </button>
-          </form>
-        </div> --}}
+        <a href="{{route('OrdersController.editStatus', {id: order.id})}}" class="primary-link">
+          Alterar Status
+        </a>
       </td>
     </tr>
     @endeach

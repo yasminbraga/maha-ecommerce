@@ -18,4 +18,36 @@ export default class OrdersController {
       return response.redirect().back()
     }
   }
+
+  public async editStatus({ view, request, session, response }: HttpContextContract) {
+    const id = request.param('id')
+    try {
+      const order = await Order.find(id)
+      return view.render('orders/edit-status', { order })
+    } catch (error) {
+      console.error(error)
+      session.flash('error', 'Erro ao encontrar pedido')
+      return response.redirect().back()
+    }
+  }
+
+  public async update({ request, session, response }: HttpContextContract) {
+    const id = request.param('id')
+    const { status } = request.body()
+
+    const order = await Order.find(id)
+    if (!order) {
+      session.flash('error', 'Erro ao encontrar pedido')
+      return response.redirect().back()
+    }
+    try {
+      await order.merge({ status }).save()
+      session.flash('success', 'Pedido editado com sucesso.')
+      return response.redirect().toRoute('/admin/orders')
+    } catch (error) {
+      console.error(error)
+      session.flash('error', 'Erro ao encontrar pedido')
+      return response.redirect().back()
+    }
+  }
 }
