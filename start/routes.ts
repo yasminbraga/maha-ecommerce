@@ -6,6 +6,7 @@ Route.group(() => {
   Route.get('products', 'ProductsController.index')
   Route.get('signup', 'ClientsController.create')
   Route.post('signup', 'ClientsController.store')
+  Route.on('ingredients').render('public/ingredients')
 
   Route.resource('signin', 'SessionsController').only(['index', 'store'])
   Route.post('logout', 'SessionsController.logout')
@@ -17,8 +18,10 @@ Route.group(() => {
     Route.on('app/*').render('public/app')
     Route.on('quiz').render('public/quiz')
     Route.post('quiz', 'QuizController.store')
+
     Route.post('order', 'OrdersController.store')
     Route.post('payment', 'OrdersController.payment')
+
     Route.get('my-account', 'ClientsController.index')
   }).middleware(['auth:webClient'])
 }).namespace('App/Controllers/Http/Public')
