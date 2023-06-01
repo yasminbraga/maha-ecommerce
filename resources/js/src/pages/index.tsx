@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { QuizProvider } from '../contexts/QuizContext'
+import Ingredients from './Ingredients'
 import { Quiz } from './Quiz'
 
 const pages = [
@@ -11,6 +12,10 @@ const pages = [
       </QuizProvider>
     ),
     id: 'quiz',
+  },
+  {
+    Component: <Ingredients />,
+    id: 'ingredients',
   },
 ]
 
