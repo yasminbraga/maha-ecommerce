@@ -1,0 +1,27 @@
+@layout('layouts/main')
+
+@section('content')
+<section class="form-card">
+  <h2 class="card-title">Editar status de pedido</h2>
+  <form action="{{route('OrdersController.update', {id: order.id})}}?_method=PUT" method="POST">
+
+    <div class="field">
+      <label for="status">Status</label>
+      <select name="status" id="status">
+        <option value="">Selecione</option>
+        <option value="confirmed">Confirmado</option>
+        <option value="shipped">Enviado</option>
+        <option value="cancelled">Cancelado</option>
+      </select>
+
+      @if(flashMessages.has('errors.status'))
+      <span class="error-container">
+        {{flashMessages.get('errors.status')}}
+      </span>
+      @endif
+    </div>
+
+    <button type="submit" class="primary-btn">Salvar</button>
+  </form>
+</section>
+@endsection

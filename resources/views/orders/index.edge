@@ -1,0 +1,60 @@
+@layout('layouts/main')
+
+@set('title', 'Pedidos')
+
+@section('content')
+<table>
+  <thead>
+    <th>Pedido</th>
+    <th>Cliente</th>
+    <th>Total</th>
+    <th>Produtos</th>
+    <th>Comprovante</th>
+    <th>Data</th>
+    <th>Status</th>
+    <th></th>
+  </thead>
+  <tbody>
+    @each(order in orders)
+    <tr>
+      <td title="Pedido">
+        {{order.id}}
+      </td>
+      <td title="Cliente">
+        <div class="table-content">
+          <div>
+            <h4 class="table-title">
+              {{order.client.name}}
+            </h4>
+            <p class="table-subtitle">{{order.client.email}}</p>
+          </div>
+        </div>
+      </td>
+      <td title="Total">{{order.formatedPrice}}</td>
+      <td title="Produtos">
+        @each(product in order.products)
+        <div class="table-content">
+          {{product.$extras.pivot_quantity}} {{product.name}}
+        </div>
+        @endeach
+      </td>
+      <td title="Comprovante">
+        <a class="link" href="{{order.orderPaymentDetail.url}}" target="_blank">Baixar <i
+            class="material-icons-outlined">download</i></a>
+      </td>
+      <td title="Data">{{order.formatedDate}}</td>
+      <td title="Status">
+        <div class="status-container {{order.status}}">
+          {{order.translatedStatus}}
+        </div>
+      </td>
+      <td>
+        <a href="{{route('OrdersController.editStatus', {id: order.id})}}" class="primary-link">
+          Alterar Status
+        </a>
+      </td>
+    </tr>
+    @endeach
+  </tbody>
+</table>
+@endsection
