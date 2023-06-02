@@ -1,6 +1,18 @@
 import React, { PropsWithChildren } from 'react'
+import { FiTrash2 } from 'react-icons/fi'
 import { useCartContext } from '../../contexts/CartContext'
-
+import { formatPrice } from '../../utils/formatPrice'
+import {
+  ButtonsContainer,
+  Container,
+  DescriptionContainer,
+  InfoContainer,
+  PriceContainer,
+  ProductImage,
+  QuantityBtn,
+  QuantityContainer,
+  RemoveBtn,
+} from './styles'
 export type ProductType = {
   id: number
   name: string
@@ -19,33 +31,37 @@ const Product: React.FC<PropsWithChildren<ProductType>> = ({
   const { getQuantity, increaseQuantity, decreaseQuantity, removeFromCart } = useCartContext()
   const quantity = getQuantity(id)
   return (
-    <>
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <span>{price}</span>
+    <Container>
+      <ProductImage src={file.url} alt={name} />
+      <InfoContainer>
+        <h5>{name}</h5>
+        <DescriptionContainer>{description}</DescriptionContainer>
+        <PriceContainer>{formatPrice(price)}</PriceContainer>
+      </InfoContainer>
       <div>
         {quantity === 0 ? (
           <button type="button" onClick={() => increaseQuantity(id)}>
             Adicionar ao carrinho
           </button>
         ) : (
-          <div>
-            <div>
-              <button type="button" onClick={() => decreaseQuantity(id)}>
+          <ButtonsContainer>
+            <QuantityContainer>
+              <QuantityBtn type="button" onClick={() => decreaseQuantity(id)}>
                 -
-              </button>
+              </QuantityBtn>
               <p>{quantity}</p>
-              <button type="button" onClick={() => increaseQuantity(id)}>
+              <QuantityBtn type="button" onClick={() => increaseQuantity(id)}>
                 +
-              </button>
-            </div>
-            <button type="button" onClick={() => removeFromCart(id)}>
+              </QuantityBtn>
+            </QuantityContainer>
+            <RemoveBtn type="button" onClick={() => removeFromCart(id)}>
+              <FiTrash2 />
               Remover
-            </button>
-          </div>
+            </RemoveBtn>
+          </ButtonsContainer>
         )}
       </div>
-    </>
+    </Container>
   )
 }
 

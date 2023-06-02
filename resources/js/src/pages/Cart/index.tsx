@@ -1,9 +1,12 @@
 import React from 'react'
+import { FiMail, FiUser } from 'react-icons/fi'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 import Product from '../../components/Product'
 import { useCartContext } from '../../contexts/CartContext'
 import api from '../../services/api'
-import { CartContent, PrimaryButton, Summary, TotalContainer } from './styles'
+import { formatPrice } from '../../utils/formatPrice'
+
+import { CartContent, InfoContainer, PrimaryButton, Summary, TotalContainer } from './styles'
 
 export type ProductType = {
   id: number
@@ -39,29 +42,33 @@ const Cart = () => {
     <>
       <h1>Carrinho</h1>
       <CartContent>
-        <div>
-          <h2>Informações do usuário</h2>
-          <p>{user.name}</p>
-          <p>{user.email}</p>
-        </div>
+        <Summary>
+          <h3>Informações do usuário</h3>
+          <InfoContainer>
+            <FiUser />
+            {user.name}
+          </InfoContainer>
+          <InfoContainer>
+            <FiMail />
+            {user.email}
+          </InfoContainer>
+        </Summary>
         <Summary>
           <h3>Resumo do pedido</h3>
           {cartProducts.map((product: ProductType) => (
-            <div key={product.id}>
-              <Product {...product} />
-            </div>
+            <Product {...product} key={product.id} />
           ))}
 
           <TotalContainer>
             <h5>Subtotal</h5>
-            <h5>{total}</h5>
+            <h5>{formatPrice(total)}</h5>
           </TotalContainer>
           <TotalContainer>
             <h5>Total</h5>
-            <h5>{total}</h5>
+            <h5>{formatPrice(total)}</h5>
           </TotalContainer>
           <PrimaryButton type="button" onClick={handleSubmit}>
-            Confirmar pedido
+            Ir para pagamento
           </PrimaryButton>
         </Summary>
       </CartContent>
