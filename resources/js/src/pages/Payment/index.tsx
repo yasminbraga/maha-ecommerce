@@ -1,10 +1,13 @@
 import React, { ChangeEvent, useState } from 'react'
 
+import { FiCopy } from 'react-icons/fi'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import QrCode from '../../assets/qrCode.png'
 import { useCartContext } from '../../contexts/CartContext'
 import api from '../../services/api'
-import { QRCodeImage } from './styles'
+import { formatPrice } from '../../utils/formatPrice'
+import { PrimaryButton } from '../Cart/styles'
+import { Container, CopyBtn, FormContainer, KeyContainer, QRCodeImage } from './styles'
 
 const Payment: React.FC = () => {
   const navigate = useNavigate()
@@ -39,24 +42,24 @@ const Payment: React.FC = () => {
   }
 
   return (
-    <div>
+    <Container>
       <h1>Realize seu pagamento</h1>
-      <p>Seu pedido saiu no valor total de {total}</p>
+      <p>Seu pedido saiu no valor total de {formatPrice(total)}</p>
       <QRCodeImage src={QrCode} alt="" />
-      <p>Aponte sua câmera para o QR code ou copie nossa chave</p>
-      <div>
+      <h4>Aponte sua câmera para o QR code ou copie nossa chave</h4>
+      <KeyContainer>
         <p>Chave CNPJ: 0559030939</p>
-        <button type="button" onClick={() => navigator.clipboard.writeText('0559030939')}>
-          copiar
-        </button>
-      </div>
+        <CopyBtn type="button" onClick={() => navigator.clipboard.writeText('0559030939')}>
+          <FiCopy size="1.5em" />
+        </CopyBtn>
+      </KeyContainer>
 
-      <form onSubmit={handleSubmit}>
-        <h5>Por favor, Envie seu comprovante para confirmarmos seu pagamento</h5>
+      <FormContainer onSubmit={handleSubmit}>
+        <p>Por favor, Envie seu comprovante para confirmarmos seu pagamento</p>
         <input type="file" name="file" onChange={handleSelectFile} />
-        <button>Finalizar</button>
-      </form>
-    </div>
+        <PrimaryButton>Finalizar</PrimaryButton>
+      </FormContainer>
+    </Container>
   )
 }
 
