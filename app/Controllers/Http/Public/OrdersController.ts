@@ -6,19 +6,32 @@ import cloudinary from 'App/utils/cloudinary'
 export default class OrdersController {
   public async index({}: HttpContextContract) {}
   public async store({ request, auth }: HttpContextContract) {
-    const { data } = request.body()
+    const { total, productsIds } = request.body()
+    const file = request.file('file', {
+      size: '2mb',
+      extnames: ['jpg', 'png', 'pdf'],
+    })
 
     try {
       const order = await Order.create({
-        total: data.total,
+        total: Number(total),
         status: 'pending',
         clientId: auth.user?.id,
       })
 
-      data.productsIds.map(async (item) => {
+      JSON.parse(productsIds).map(async (item) => {
         await order.related('products').attach({ [item.id]: { quantity: item.quantity } })
       })
-      return { orderId: order.id }
+
+      const result = await cloudinary.uploader.upload(file?.tmpPath, { folder: 'receipts' })
+
+      const orderPayment = await OrderPaymentDetail.create({
+        orderId: order.id,
+        url: result.secure_url,
+        publicId: result.public_id,
+      })
+
+      return 'ok'
     } catch (error) {
       console.log(error)
     }

@@ -1,20 +1,19 @@
 import React, { ChangeEvent, useState } from 'react'
 
 import { FiCopy } from 'react-icons/fi'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import QrCode from '../../assets/qrCode.png'
 import { useCartContext } from '../../contexts/CartContext'
 import api from '../../services/api'
 import { formatPrice } from '../../utils/formatPrice'
-import { PrimaryButton } from '../Cart/styles'
-import { Container, CopyBtn, FormContainer, KeyContainer, QRCodeImage } from './styles'
+import { Container, CopyBtn, KeyContainer, QRCodeImage } from './styles'
 
 const Payment: React.FC = () => {
   const navigate = useNavigate()
-  const { total } = useCartContext()
-  const [searchParams] = useSearchParams()
+  const { total, cartProducts } = useCartContext()
+  // const [searchParams] = useSearchParams()
   const [file, setFile] = useState<File>()
-  const orderId = searchParams.get('orderId')
+  // const orderId = searchParams.get('orderId')
 
   const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -22,20 +21,26 @@ const Payment: React.FC = () => {
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (ev) => {
+    ev.preventDefault()
     const formData = new FormData()
+    const productsIds = cartProducts.map((item) => ({
+      id: item.id,
+      quantity: item.quantity,
+    }))
 
     try {
-      if (file && orderId) {
+      if (file) {
         formData.append('file', file)
-        formData.append('orderId', orderId)
-        await api.post('/payment', formData, {
+        formData.append('total', String(total))
+        formData.append('productsIds', JSON.stringify(productsIds))
+        await api.post('/order', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         })
-        navigate({
-          pathname: '/order-result',
-        })
       }
+      navigate({
+        pathname: '/order-result',
+      })
     } catch (error) {
       console.log(error)
     }
@@ -54,11 +59,11 @@ const Payment: React.FC = () => {
         </CopyBtn>
       </KeyContainer>
 
-      <FormContainer onSubmit={handleSubmit}>
+      <form onSubmit={(ev) => handleSubmit(ev)}>
         <p>Por favor, Envie seu comprovante para confirmarmos seu pagamento</p>
         <input type="file" name="file" onChange={handleSelectFile} />
-        <PrimaryButton>Finalizar</PrimaryButton>
-      </FormContainer>
+        <button type="submit">Finalizar</button>
+      </form>
     </Container>
   )
 }
