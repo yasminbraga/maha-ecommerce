@@ -1,12 +1,11 @@
 import React from 'react'
 import { FiMail, FiUser } from 'react-icons/fi'
-import { createSearchParams, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Product from '../../components/Product'
 import { useCartContext } from '../../contexts/CartContext'
-import api from '../../services/api'
 import { formatPrice } from '../../utils/formatPrice'
 
-import { CartContent, InfoContainer, PrimaryButton, Summary, TotalContainer } from './styles'
+import { CartContent, InfoContainer, Summary, TotalContainer } from './styles'
 
 export type ProductType = {
   id: number
@@ -21,22 +20,22 @@ const Cart = () => {
   const { user, cartProducts, total } = useCartContext()
   const navigate = useNavigate()
 
-  const handleSubmit = async () => {
-    try {
-      const productsIds = cartProducts.map((item) => ({
-        id: item.id,
-        quantity: item.quantity,
-      }))
-      const data = { total, productsIds }
-      const response = await api.post('/order', { data })
-      navigate({
-        pathname: '/payment',
-        search: createSearchParams({ orderId: response.data.orderId }).toString(),
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const handleSubmit = async () => {
+  //   try {
+  //     const productsIds = cartProducts.map((item) => ({
+  //       id: item.id,
+  //       quantity: item.quantity,
+  //     }))
+  //     const data = { total, productsIds }
+  //     const response = await api.post('/order', { data })
+  //     navigate({
+  //       pathname: '/payment',
+  //       search: createSearchParams({ orderId: response.data.orderId }).toString(),
+  //     })
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   return (
     <>
@@ -67,9 +66,10 @@ const Cart = () => {
             <h5>Total</h5>
             <h5>{formatPrice(total)}</h5>
           </TotalContainer>
-          <PrimaryButton type="button" onClick={handleSubmit}>
+          {/* <PrimaryButton type="button" onClick={handleSubmit}>
             Ir para pagamento
-          </PrimaryButton>
+          </PrimaryButton> */}
+          <Link to={'/payment'}>Pagar</Link>
         </Summary>
       </CartContent>
     </>
