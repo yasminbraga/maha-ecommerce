@@ -5,6 +5,5 @@
   "assets/public_app.js": "http://localhost:8080/assets/public_app.js",
   "assets/react_app.css": "http://localhost:8080/assets/react_app.css",
   "assets/react_app.js": "http://localhost:8080/assets/react_app.js",
-  "assets/images/qrCode.png": "http://localhost:8080/assets/images/qrCode.72eddf47.png",
-  "assets/react_app.png": "http://localhost:8080/assets/images/qrCode.72eddf47.png"
+  "assets/images/qrCode.png": "http://localhost:8080/assets/images/qrCode.72eddf47.png"
 }
