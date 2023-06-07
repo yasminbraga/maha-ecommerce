@@ -3,6 +3,7 @@ import api from '../services/api'
 
 interface CartContextType {
   cartProducts: Array<ProductType>
+  allProducts: Array<ProductType>
   setCartProducts: React.Dispatch<React.SetStateAction<ProductType[]>>
 
   total: number
@@ -57,25 +58,25 @@ export const CartProvider: React.FC<PropsWithChildren<CartProviderProps>> = ({
 
   const increaseQuantity = (id: number) => {
     setCartProducts((currentProducts) => {
-      return currentProducts.map((product) => {
-        if (product.id === id) {
-          return { ...product, quantity: product.quantity + 1 }
-        } else {
-          return product
-        }
-      })
-      // if (!currentProducts.find((product) => product.id === id)) {
-      //   const product = allProducts.find((carProduct) => carProduct.id === id)
-      //   return [...currentProducts, { ...product, quantity: 1 }]
-      // } else {
-      //   return currentProducts.map((product) => {
-      //     if (product.id === id) {
-      //       return { ...product, quantity: product.quantity + 1 }
-      //     } else {
-      //       return product
-      //     }
-      //   })
-      // }
+      // return currentProducts.map((product) => {
+      //   if (product.id === id) {
+      //     return { ...product, quantity: product.quantity + 1 }
+      //   } else {
+      //     return product
+      //   }
+      // })
+      if (!currentProducts.find((product) => product.id === id)) {
+        const newProduct = allProducts.find((carProduct) => carProduct.id === id)
+        return [...currentProducts, { ...newProduct, quantity: 1 }]
+      } else {
+        return currentProducts.map((product) => {
+          if (product.id === id) {
+            return { ...product, quantity: product.quantity + 1 }
+          } else {
+            return product
+          }
+        })
+      }
     })
   }
 
@@ -109,6 +110,7 @@ export const CartProvider: React.FC<PropsWithChildren<CartProviderProps>> = ({
       value={{
         user: auth,
         cartProducts,
+        allProducts,
         setCartProducts,
         total,
         getQuantity,

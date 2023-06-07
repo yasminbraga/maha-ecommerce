@@ -17,7 +17,7 @@ export type ProductType = {
 }
 
 const Cart = () => {
-  const { user, cartProducts, total } = useCartContext()
+  const { user, allProducts, cartProducts, total, increaseQuantity } = useCartContext()
   const navigate = useNavigate()
 
   // const handleSubmit = async () => {
@@ -36,6 +36,10 @@ const Cart = () => {
   //     console.log(error)
   //   }
   // }
+
+  const listProducts = allProducts.filter((product) => {
+    return !cartProducts.some((item) => item.id === product.id)
+  })
 
   return (
     <>
@@ -72,6 +76,16 @@ const Cart = () => {
           <Link to={'/payment'}>Pagar</Link>
         </Summary>
       </CartContent>
+      <div>
+        {listProducts.map((item) => (
+          <div key={item.id}>
+            <p>{item.name}</p>
+            <button type="button" onClick={() => increaseQuantity(item.id)}>
+              Adicionar ao carrinho
+            </button>
+          </div>
+        ))}
+      </div>
     </>
   )
 }
