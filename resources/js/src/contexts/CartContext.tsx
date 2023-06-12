@@ -3,7 +3,8 @@ import api from '../services/api'
 
 interface CartContextType {
   cartProducts: Array<ProductType>
-  setCartProducts: React.Dispatch<React.SetStateAction<ProductType[]>>
+  allProducts: Array<ProductType>
+  setCartProducts: React.Dispatch<React.SetStateAction<ProductType[] | []>>
 
   total: number
   user: Auth
@@ -46,8 +47,15 @@ export const CartProvider: React.FC<PropsWithChildren<CartProviderProps>> = ({
     api
       .get('/products')
       .then((response) => {
-        const products = response.data.map((product: ProductType) => {
-          return { ...product, quantity: 1 }
+        const products: Array<ProductType> = response.data.map((product: ProductType) => {
+          return {
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            file: { url: product.file.url },
+            quantity: 1,
+          }
         })
         setCartProducts(products)
         setAllProducts(products)
@@ -57,25 +65,20 @@ export const CartProvider: React.FC<PropsWithChildren<CartProviderProps>> = ({
 
   const increaseQuantity = (id: number) => {
     setCartProducts((currentProducts) => {
-      return currentProducts.map((product) => {
-        if (product.id === id) {
-          return { ...product, quantity: product.quantity + 1 }
-        } else {
-          return product
-        }
-      })
-      // if (!currentProducts.find((product) => product.id === id)) {
-      //   const product = allProducts.find((carProduct) => carProduct.id === id)
-      //   return [...currentProducts, { ...product, quantity: 1 }]
-      // } else {
-      //   return currentProducts.map((product) => {
-      //     if (product.id === id) {
-      //       return { ...product, quantity: product.quantity + 1 }
-      //     } else {
-      //       return product
-      //     }
-      //   })
-      // }
+      console.log(currentProducts)
+      if (!currentProducts.find((product) => product.id === id)) {
+        const newProduct = allProducts.find((carProduct) => carProduct.id === id)
+        if (!newProduct) return currentProducts
+        return [...currentProducts, { ...newProduct, quantity: 1 }]
+      } else {
+        return currentProducts.map((product: ProductType) => {
+          if (product.id === id) {
+            return { ...product, quantity: product.quantity + 1 }
+          } else {
+            return product
+          }
+        })
+      }
     })
   }
 
@@ -109,6 +112,7 @@ export const CartProvider: React.FC<PropsWithChildren<CartProviderProps>> = ({
       value={{
         user: auth,
         cartProducts,
+        allProducts,
         setCartProducts,
         total,
         getQuantity,

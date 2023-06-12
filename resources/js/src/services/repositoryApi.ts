@@ -1,12 +1,14 @@
-import axios from 'axios'
+import axios, { AxiosRequestHeaders } from 'axios'
 
 const repositoryApi = axios.create({
   baseURL: 'https://repositoriodefitoingredientes.herokuapp.com',
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-    'Content-Type': 'application/json',
-  },
 })
 
+repositoryApi.interceptors.request.use((config) => {
+  config.headers = {
+    'Content-Type': 'text/plain',
+  } as AxiosRequestHeaders
+
+  return config
+})
 export default repositoryApi

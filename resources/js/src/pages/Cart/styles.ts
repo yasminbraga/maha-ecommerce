@@ -54,3 +54,8 @@ export const PrimaryButton = styled.button`
     background-color: #90a67b;
   }
 `
+
+export const ListProducts = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+`
