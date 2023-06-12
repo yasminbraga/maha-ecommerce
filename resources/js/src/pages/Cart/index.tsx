@@ -1,11 +1,12 @@
 import React from 'react'
 import { FiMail, FiUser } from 'react-icons/fi'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Product from '../../components/Product'
 import { useCartContext } from '../../contexts/CartContext'
 import { formatPrice } from '../../utils/formatPrice'
 
-import { CartContent, InfoContainer, Summary, TotalContainer } from './styles'
+import AddToCart from '../../components/AddToCart'
+import { CartContent, InfoContainer, ListProducts, Summary, TotalContainer } from './styles'
 
 export type ProductType = {
   id: number
@@ -18,24 +19,6 @@ export type ProductType = {
 
 const Cart = () => {
   const { user, allProducts, cartProducts, total, increaseQuantity } = useCartContext()
-  const navigate = useNavigate()
-
-  // const handleSubmit = async () => {
-  //   try {
-  //     const productsIds = cartProducts.map((item) => ({
-  //       id: item.id,
-  //       quantity: item.quantity,
-  //     }))
-  //     const data = { total, productsIds }
-  //     const response = await api.post('/order', { data })
-  //     navigate({
-  //       pathname: '/payment',
-  //       search: createSearchParams({ orderId: response.data.orderId }).toString(),
-  //     })
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
   const listProducts = allProducts.filter((product) => {
     return !cartProducts.some((item) => item.id === product.id)
@@ -70,22 +53,27 @@ const Cart = () => {
             <h5>Total</h5>
             <h5>{formatPrice(total)}</h5>
           </TotalContainer>
-          {/* <PrimaryButton type="button" onClick={handleSubmit}>
-            Ir para pagamento
-          </PrimaryButton> */}
           <Link to={'/payment'}>Pagar</Link>
         </Summary>
       </CartContent>
-      <div>
-        {listProducts.map((item) => (
-          <div key={item.id}>
-            <p>{item.name}</p>
-            <button type="button" onClick={() => increaseQuantity(item.id)}>
-              Adicionar ao carrinho
-            </button>
-          </div>
-        ))}
-      </div>
+      {listProducts.length > 0 ? (
+        <div>
+          <h2>Adicione mais produtos</h2>
+          <ListProducts>
+            {listProducts.map((item) => (
+              <AddToCart
+                id={item.id}
+                key={item.id}
+                file={item.file}
+                name={item.name}
+                description={item.description}
+                increaseQuantity={increaseQuantity}
+                price={item.price}
+              />
+            ))}
+          </ListProducts>
+        </div>
+      ) : null}
     </>
   )
 }
