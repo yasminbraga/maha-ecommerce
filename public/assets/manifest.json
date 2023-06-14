@@ -5,5 +5,8 @@
   "assets/public_app.js": "http://localhost:8080/assets/public_app.js",
   "assets/react_app.css": "http://localhost:8080/assets/react_app.css",
   "assets/react_app.js": "http://localhost:8080/assets/react_app.js",
-  "assets/images/qrCode.png": "http://localhost:8080/assets/images/qrCode.72eddf47.png"
+  "assets/images/qrCode.png": "http://localhost:8080/assets/images/qrCode.72eddf47.png",
+  "assets/react_app.jpg": "http://localhost:8080/assets/images/3.689ee0bb.jpg",
+  "assets/images/3.jpg": "http://localhost:8080/assets/images/3.689ee0bb.jpg",
+  "assets/images/2.jpg": "http://localhost:8080/assets/images/2.3326f69d.jpg"
 }
