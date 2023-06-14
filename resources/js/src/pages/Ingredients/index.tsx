@@ -1,22 +1,21 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import repositoryApi from '../../services/repositoryApi'
 
-// import { Container } from './styles';
+import { Container, ItemImage } from './styles'
+
+interface IngredientType {
+  id: number
+  nome: string
+  objetivo?: string
+}
 
 const Ingredients: React.FC = () => {
+  const [ingredients, setIngredients] = useState<IngredientType[]>([])
+
   const loadIngredients = useCallback(async () => {
     try {
-      const res = await fetch(
-        'https://repositoriodefitoingredientes.herokuapp.com/excipiente/json'
-      ).then((res) => {
-        console.log(res)
-        res.json()
-      })
-
-      const res2 = await repositoryApi.get('/excipiente/json')
-
-      console.log(res)
-      console.log(res2)
+      const res = await repositoryApi.get('/excipiente/json')
+      setIngredients(res.data)
     } catch (err) {
       console.log(err)
     }
@@ -26,7 +25,21 @@ const Ingredients: React.FC = () => {
     loadIngredients()
   }, [])
 
-  return <h1>Ingredientes</h1>
+  return (
+    <Container>
+      <h2>Ingredientes</h2>
+      {ingredients.map((i) => {
+        const image = require(`../../assets/${i.id}.jpg`)
+        return (
+          <div key={i.id}>
+            <ItemImage src={image} alt={i.nome} />
+            <p>{i.nome}</p>
+            <p>{i.objetivo ?? 'texto nao carregado'}</p>
+          </div>
+        )
+      })}
+    </Container>
+  )
 }
 
 export default Ingredients
