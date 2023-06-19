@@ -10,6 +10,9 @@ export default class Client extends BaseModel {
   @column()
   public email: string
 
+  @column()
+  public cpf: string
+
   @column({ serializeAs: null })
   public password: string
 

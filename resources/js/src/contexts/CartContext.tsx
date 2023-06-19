@@ -5,7 +5,6 @@ interface CartContextType {
   cartProducts: Array<ProductType>
   allProducts: Array<ProductType>
   setCartProducts: React.Dispatch<React.SetStateAction<ProductType[] | []>>
-
   total: number
   user: Auth
   getQuantity: (id: number) => number
