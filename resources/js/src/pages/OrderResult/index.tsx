@@ -2,7 +2,7 @@ import React from 'react'
 
 // import { Container } from './styles';
 
-const Result: React.FC = () => {
+const OrderResult: React.FC = () => {
   return (
     <div>
       <h1>Pedido realizado com sucesso!</h1>
@@ -11,4 +11,4 @@ const Result: React.FC = () => {
   )
 }
 
-export default Result
+export default OrderResult

@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { CartProvider } from '../../contexts/CartContext'
 import Cart from '../Cart'
+import OrderResult from '../OrderResult'
 import Payment from '../Payment'
-import Result from '../Result'
 
 const router = createBrowserRouter(
   [
     { path: '/cart', element: <Cart /> },
     { path: '/payment', element: <Payment /> },
-    { path: '/order-result', element: <Result /> },
+    { path: '/order-result', element: <OrderResult /> },
   ],
   {
     basename: '/app',
