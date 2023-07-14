@@ -7,5 +7,9 @@
   "assets/react_app.js": "http://localhost:8080/assets/react_app.js",
   "assets/images/qrCode.png": "http://localhost:8080/assets/images/qrCode.72eddf47.png",
   "assets/images/2.jpg": "http://localhost:8080/assets/images/2.3326f69d.jpg",
-  "assets/images/3.jpg": "http://localhost:8080/assets/images/3.689ee0bb.jpg"
+  "assets/images/3.jpg": "http://localhost:8080/assets/images/3.689ee0bb.jpg",
+  "assets/images/curly.png": "http://localhost:8080/assets/images/curly.4e1897a4.png",
+  "assets/images/coily.png": "http://localhost:8080/assets/images/coily.609802b0.png",
+  "assets/images/wavy.png": "http://localhost:8080/assets/images/wavy.68cd510c.png",
+  "assets/images/straight.png": "http://localhost:8080/assets/images/straight.123b37f0.png"
 }
