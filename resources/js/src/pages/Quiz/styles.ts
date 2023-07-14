@@ -11,14 +11,18 @@ export const Header = styled.header`
   margin-top: 1rem;
 `
 export const ButtonContainer = styled.div`
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
   gap: 0.5rem;
 `
 export const Button = styled.button`
-  padding: 0.5rem;
-  background: transparent;
-  border: 1px solid #90a67b;
+  padding: 0.5rem 1rem;
+  background: #0d2601;
+  border: none;
   border-radius: 0.2rem;
   cursor: pointer;
+  font-size: 17px;
+  color: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
 `

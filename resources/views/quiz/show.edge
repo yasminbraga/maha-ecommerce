@@ -1,0 +1,97 @@
+@layout('layouts/main')
+
+@set('title', 'Questionário')
+
+@section('content')
+<h1>Fórmula: {{quiz.formula_name}}</h1>
+
+<section class="card-container">
+  <h3 class="section-title">Objetivos</h3>
+  <div class="list-container">
+    @each(goal in quiz.translated.goals)
+    <div class="list-item">
+      <p>{{goal}}</p>
+    </div>
+    @endeach
+  </div>
+</section>
+
+<div class="columns">
+  <section class="card-container">
+    <h3 class="section-title">Perfil capilar</h3>
+
+    <section class="items">
+      <div class="item">
+        <h4>Tipo</h4>
+        <p>{{quiz.translated.hairType}}</p>
+      </div>
+
+      <div class="item">
+        <h4>Espessura do fio</h4>
+        <p>{{quiz.translated.hairStructure}}</p>
+      </div>
+
+      <div class="item">
+        <h4>Comprimento</h4>
+        <p>{{quiz.translated.hairSize}}</p>
+      </div>
+
+      <div class="item">
+        <h4>Oleosidade na raiz</h4>
+        <p>{{quiz.translated.scalpMoisture}}</p>
+      </div>
+
+      <div class="item">
+        <h4>Oleosidade nas pontas</h4>
+        <p>{{quiz.translated.endsMoisture}}</p>
+      </div>
+
+      <div class="item">
+        <h4>Coloração</h4>
+        <p>{{quiz.translated.color}}</p>
+      </div>
+
+      <div class="item">
+        <h4>Tratamentos</h4>
+        @each(treatment in quiz.translated.treatments)
+        <p>{{treatment}}</p>
+        @endeach
+      </div>
+
+      <div class="item">
+        <h4>Itens de estilo</h4>
+        @each(style in quiz.translated.hairStyle)
+        <p>{{style}}</p>
+        @endeach
+      </div>
+
+      <div class="item">
+        <h4>Frequência de lavagem</h4>
+        <p>{{quiz.wash_frequence}}</p>
+      </div>
+    </section>
+  </section>
+
+  <section class="card-container">
+    <h3 class="section-title">Perfil pessoal</h3>
+    <section class="items">
+      <div class="item">
+        <h4>Faixa etária</h4>
+        <p>{{quiz.translated.age}}</p>
+      </div>
+
+      <div class="item">
+        <h4>Frequência de treino</h4>
+        <p>{{quiz.workout_frequence}}/semana</p>
+      </div>
+
+      <div class="item">
+        <h4>Lugares de treino</h4>
+        @each(place in quiz.translated.workoutPlace)
+        <p>{{place}}</p>
+        @endeach
+      </div>
+    </section>
+  </section>
+</div>
+@endsection
