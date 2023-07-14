@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Container, Title } from './styles'
+import { Container, Subtitle, Title } from './styles'
 interface QuizWrapperType {
   title: string
   subtitle: string
@@ -10,7 +10,7 @@ const QuizWrapper: React.FC<QuizWrapperType> = ({ title, subtitle, children }) =
   return (
     <Container>
       <Title>{title}</Title>
-      <p>{subtitle}</p>
+      <Subtitle>{subtitle}</Subtitle>
       {children}
     </Container>
   )

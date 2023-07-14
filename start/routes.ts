@@ -37,6 +37,7 @@ Route.group(() => {
     Route.resource('users', 'UsersController')
     Route.resource('clients', 'ClientsController')
     Route.resource('orders', 'OrdersController')
+    Route.resource('quiz', 'QuizController')
     Route.get('edit-status/:id', 'OrdersController.editStatus')
     Route.put('update-status/:id', 'OrdersController.update')
   }).middleware('auth')
