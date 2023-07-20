@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import repositoryApi from '../../services/repositoryApi'
 
-import { Container, ItemImage } from './styles'
+import { Container, Description, ItemContainer, ItemImage, ItemTitle, List, Title } from './styles'
 
 interface IngredientType {
   id: number
@@ -27,17 +27,24 @@ const Ingredients: React.FC = () => {
 
   return (
     <Container>
-      <h2>Ingredientes</h2>
-      {ingredients.map((i) => {
-        const image = require(`../../assets/${i.id}.jpg`)
-        return (
-          <div key={i.id}>
-            <ItemImage src={image} alt={i.nome} />
-            <p>{i.nome}</p>
-            <p>{i.objetivo ?? 'texto nao carregado'}</p>
-          </div>
-        )
-      })}
+      <Title>Ingredientes</Title>
+      <Description>
+        Ingredientes advindos da nossa rica floresta Amazônica fortalecendo o comércio local e
+        preservando a região.
+      </Description>
+
+      <List>
+        {ingredients.map((i) => {
+          const image = require(`../../assets/${i.id}.png`)
+          return (
+            <ItemContainer key={i.id}>
+              <ItemImage src={image} alt={i.nome} />
+              <ItemTitle>{i.nome}</ItemTitle>
+              <p>Exemplo de descrição de ingrediente</p>
+            </ItemContainer>
+          )
+        })}
+      </List>
     </Container>
   )
 }

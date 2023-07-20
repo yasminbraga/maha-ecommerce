@@ -22,12 +22,6 @@
       ],
       "js": [
         "http://localhost:8080/assets/react_app.js"
-      ],
-      "png": [
-        "http://localhost:8080/assets/images/coily.609802b0.png",
-        "http://localhost:8080/assets/images/curly.4e1897a4.png",
-        "http://localhost:8080/assets/images/straight.123b37f0.png",
-        "http://localhost:8080/assets/images/wavy.68cd510c.png"
       ]
     }
   }
