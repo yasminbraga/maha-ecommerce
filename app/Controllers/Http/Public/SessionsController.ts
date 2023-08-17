@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Client from 'App/Models/Client'
 import ClientLoginValidator from 'App/Validators/ClientLoginValidator'
 
 export default class SessionsController {
@@ -13,13 +14,17 @@ export default class SessionsController {
     try {
       await auth.use('webClient').attempt(email, password)
 
-      if (redirectUrl) {
-        return response.redirect().toRoute(redirectUrl)
+      const client = await Client.query()
+        .where('id', auth.use('webClient').user!.id)
+        .preload('quizzes')
+        .firstOrFail()
+
+      if (client?.quizzes.length > 0 || redirectUrl) {
+        return response.redirect().toRoute('/redirect')
       }
 
       return response.redirect().toRoute('/my-account')
     } catch (error) {
-      console.error(error)
       session.flash('error', 'Email ou senha incorretos.')
       console.error(error)
       return response.redirect().withQs().back()

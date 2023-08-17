@@ -1,0 +1,12 @@
+@layout('public/layout')
+
+@section('content')
+<h2>Olá, {{auth?.user.name}}</h2>
+<p class="page-description">Você possui fórmulas prontas, deseja preencher o formulário novamente ou comprar produtos
+  com a fórmula antiga?</p>
+
+<section class="links">
+  <a href="/quiz" class="btn secundary-btn">Nova fórmula</a>
+  <a href="/last-formula" class="btn primary-btn">Fórmulas anteriores</a>
+</section>
+@endsection

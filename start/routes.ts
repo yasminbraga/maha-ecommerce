@@ -23,6 +23,8 @@ Route.group(() => {
     Route.post('payment', 'OrdersController.payment')
 
     Route.get('my-account', 'ClientsController.index')
+    Route.get('redirect', 'QuizController.redirect')
+    Route.get('last-formula', 'QuizController.lastFormula')
   }).middleware(['auth:webClient'])
 }).namespace('App/Controllers/Http/Public')
 
