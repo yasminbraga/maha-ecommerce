@@ -12,7 +12,7 @@ export default class QuizController {
       console.log(client?.toJSON())
       return view.render('public/result', { client })
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
   public async store({ request, auth }: HttpContextContract) {
@@ -24,7 +24,23 @@ export default class QuizController {
       const quiz = await Quiz.create({ clientId: client.id, ...formData })
       return console.log(quiz)
     } catch (error) {
-      console.log(error)
+      console.error(error)
+    }
+  }
+
+  public async redirect({ view }: HttpContextContract) {
+    return view.render('public/redirect')
+  }
+
+  public async lastFormula({ auth, view }: HttpContextContract) {
+    try {
+      const client = await Client.query()
+        .where('id', auth.use('webClient').user!.id)
+        .preload('quizzes')
+        .firstOrFail()
+      return view.render('public/last_formula', { client: client.toJSON() })
+    } catch (error) {
+      console.error(error)
     }
   }
 }

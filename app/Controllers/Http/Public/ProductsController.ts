@@ -6,10 +6,10 @@ export default class ProductsController {
     try {
       const products = await Product.query().preload('file')
       // const kits = await Kit.query().preload('file').preload('products')
-      // return response.json(products)
-      return view.render('public/products', {
-        products: products.map((i) => i.toJSON()),
-      })
+      return response.json(products)
+      // return view.render('public/products', {
+      //   products: products.map((i) => i.toJSON()),
+      // })
     } catch (error) {
       console.error(error)
       session.flash('error', 'Erro ao encontrar produtos')

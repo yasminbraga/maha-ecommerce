@@ -1,0 +1,16 @@
+@layout('public/layout')
+
+@section('content')
+<h2>Olá, {{auth?.user.name}}</h2>
+<p class="page-description">Essas são suas ultimas fórmulas</p>
+
+<section>
+  @each(quiz in client.quizzes)
+  <div>
+    <h4>{{quiz.formula_name}}</h4>
+
+    <a href="/app/cart">Ir para pedido</a>
+  </div>
+  @endeach
+</section>
+@endsection
