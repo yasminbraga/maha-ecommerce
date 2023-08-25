@@ -31,11 +31,7 @@ export default class Quiz extends BaseModel {
   public hairSize: string
 
   @column()
-  public scalpMoisture: string
-
-  @column()
-  public endsMoisture: string
-
+  public moisture: string
   @column()
   public age: string
 
@@ -61,6 +57,9 @@ export default class Quiz extends BaseModel {
   public goals: Array<string>
 
   @column()
+  public fragrance: string
+
+  @column()
   public formulaName: string
 
   @column()
@@ -81,8 +80,7 @@ export default class Quiz extends BaseModel {
       hairType: translateHairType(this.hairType),
       hairStructure: translateHairStructure(this.hairStructure),
       hairSize: translateHairSize(this.hairSize),
-      scalpMoisture: translateMoisture(this.scalpMoisture),
-      endsMoisture: translateMoisture(this.endsMoisture),
+      moisture: translateMoisture(this.moisture),
       age: translateAge(this.age),
       color: translateColor(this.color),
       goals: translateGoals(this.goals),

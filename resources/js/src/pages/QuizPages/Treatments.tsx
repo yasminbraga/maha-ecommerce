@@ -48,7 +48,7 @@ const Treatments: React.FC = () => {
           onChange={handleSetValue}
           checked={data['treatments'].includes('straightening ')}
         />
-        <label htmlFor="straightening ">Alisamento</label>
+        <label htmlFor="straightening">Alisamento</label>
       </div>
 
       <div>
@@ -65,12 +65,23 @@ const Treatments: React.FC = () => {
       <div>
         <input
           type="checkbox"
+          id="transition"
+          value="transition"
+          onChange={handleSetValue}
+          checked={data['treatments'].includes('transition')}
+        />
+        <label htmlFor="transition">Estou em transição capilar</label>
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
           id="none"
           value="none"
           onChange={handleSetValue}
           checked={data['treatments'].includes('none')}
         />
-        <label htmlFor="none">Virgem</label>
+        <label htmlFor="none">Meu cabelo é natural</label>
       </div>
     </QuizWrapper>
   )

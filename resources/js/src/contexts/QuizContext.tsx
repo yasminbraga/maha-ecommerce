@@ -2,14 +2,14 @@ import React, { createContext, useState } from 'react'
 
 import Age from '../pages/QuizPages/Age'
 import Color from '../pages/QuizPages/Color'
-import EndsMoisture from '../pages/QuizPages/EndsMoisture'
 import FormulaName from '../pages/QuizPages/FormulaName'
+import Fragrance from '../pages/QuizPages/Fragrance'
 import Goals from '../pages/QuizPages/Goals'
 import HairSize from '../pages/QuizPages/HairSize'
 import HairStructure from '../pages/QuizPages/HairStructure'
 import HairStyle from '../pages/QuizPages/HairStyle'
 import HairType from '../pages/QuizPages/HairType'
-import ScalpMoisture from '../pages/QuizPages/ScalpMoisture'
+import Moisture from '../pages/QuizPages/Moisture'
 import Treatments from '../pages/QuizPages/Treatments'
 import WashFrequence from '../pages/QuizPages/WashFrequence'
 import WorkoutFrequence from '../pages/QuizPages/WorkoutFrequence'
@@ -28,8 +28,7 @@ type QuizDataType = {
   hairType: string
   hairStructure: string
   hairSize: string
-  scalpMoisture: string
-  endsMoisture: string
+  moisture: string
   age: string
   treatments: Array<string>
   color: string
@@ -38,6 +37,7 @@ type QuizDataType = {
   workoutPlace: Array<string>
   workoutFrequence: string
   goals: Array<string>
+  fragrance: boolean
   formulaName: string
 }
 export const QuizContext = createContext({} as QuizType)
@@ -49,16 +49,16 @@ export const QuizProvider = ({ children }) => {
     0: <HairType />,
     1: <HairStructure />,
     2: <HairSize />,
-    3: <ScalpMoisture />,
-    4: <EndsMoisture />,
-    5: <Age />,
-    6: <Treatments />,
-    7: <Color />,
-    8: <WashFrequence />,
-    9: <HairStyle />,
-    10: <WorkoutPlace />,
-    11: <WorkoutFrequence />,
-    12: <Goals />,
+    3: <Moisture />,
+    4: <Age />,
+    5: <Treatments />,
+    6: <Color />,
+    7: <WashFrequence />,
+    8: <HairStyle />,
+    9: <WorkoutPlace />,
+    10: <WorkoutFrequence />,
+    11: <Goals />,
+    12: <Fragrance />,
     13: <FormulaName />,
   }
 
@@ -66,8 +66,7 @@ export const QuizProvider = ({ children }) => {
     hairType: '',
     hairStructure: '',
     hairSize: '',
-    scalpMoisture: '',
-    endsMoisture: '',
+    moisture: '',
     age: '',
     treatments: [],
     color: '',
@@ -76,6 +75,7 @@ export const QuizProvider = ({ children }) => {
     workoutPlace: [],
     workoutFrequence: '',
     goals: [],
+    fragrance: true,
     formulaName: '',
   })
 
@@ -123,5 +123,5 @@ export const validations = {
   0: isNotNull,
   1: isNotNull,
   6: isNotEmpty,
-  12: isNotEmptAndGreaterThan5,
+  11: isNotEmptAndGreaterThan5,
 }

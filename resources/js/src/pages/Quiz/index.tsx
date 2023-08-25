@@ -9,9 +9,10 @@ export const Quiz: React.FC = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     try {
-      const response = await api.post('/quiz', { data })
-      // window.location.replace('/result')
+      await api.post('/quiz', { data })
+      window.location.replace('/result')
     } catch (error) {
       return console.log(error)
     }
