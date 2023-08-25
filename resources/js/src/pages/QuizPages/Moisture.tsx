@@ -13,21 +13,21 @@ const Field = styled.div`
   gap: 0.3rem;
 `
 
-const EndsMoisture: React.FC = () => {
+const Moisture: React.FC = () => {
   const { data, setData } = useContext(QuizContext)
 
   const handleSetValue = (e: FormEvent<HTMLDivElement>) => {
     const target = e.target as HTMLInputElement
-    setData({ ...data, ['endsMoisture']: target.value })
+    setData({ ...data, ['moisture']: target.value })
   }
   return (
     <QuizWrapper
-      title="Como é a oleosidade do seu cabelo nas pontas?"
+      title="Como é a oleosidade do seu cabelo?"
       subtitle="Quanto a oleosidade do seu cabelo no momento"
     >
       <RadioWrapper onChange={(e) => handleSetValue(e)}>
         <Field>
-          <input type="radio" id="dry" value="dry" checked={data['endsMoisture'] === 'dry'} />
+          <input type="radio" id="dry" value="dry" checked={data['moisture'] === 'dry'} />
           <label htmlFor="dry">Seca</label>
         </Field>
 
@@ -36,13 +36,13 @@ const EndsMoisture: React.FC = () => {
             type="radio"
             id="balanced"
             value="balanced"
-            checked={data['endsMoisture'] === 'balanced'}
+            checked={data['moisture'] === 'balanced'}
           />
           <label htmlFor="balanced">Normal</label>
         </Field>
 
         <Field>
-          <input type="radio" id="oily" value="oily" checked={data['endsMoisture'] === 'oily'} />
+          <input type="radio" id="oily" value="oily" checked={data['moisture'] === 'oily'} />
           <label htmlFor="oily">Oleosa</label>
         </Field>
       </RadioWrapper>
@@ -50,4 +50,4 @@ const EndsMoisture: React.FC = () => {
   )
 }
 
-export default EndsMoisture
+export default Moisture

@@ -21,7 +21,7 @@ const HairSize: React.FC = () => {
   }
 
   return (
-    <QuizWrapper title="Qua o comprimento do seu cabelo?" subtitle="">
+    <QuizWrapper title="Qual o comprimento do seu cabelo?" subtitle="">
       <RadioWrapper onChange={(e) => handleSetValue(e)}>
         <Field>
           <input type="radio" id="short" value="short" checked={data['hairSize'] === 'short'} />

@@ -21,7 +21,7 @@ const Age: React.FC = () => {
   }
 
   return (
-    <QuizWrapper title="Qua o comprimento do seu cabelo?" subtitle="">
+    <QuizWrapper title="Qual sua faixa etária?" subtitle="">
       <RadioWrapper onChange={(e) => handleSetValue(e)}>
         <Field>
           <input type="radio" id="2_10" value="2_10" checked={data['age'] === '2_10'} />

@@ -15,7 +15,9 @@ Route.group(() => {
 
   Route.group(() => {
     Route.get('/result', 'QuizController.index')
+
     Route.on('app/*').render('public/app')
+
     Route.on('quiz').render('public/quiz')
     Route.post('quiz', 'QuizController.store')
 

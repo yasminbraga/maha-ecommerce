@@ -43,9 +43,9 @@ export const translateHairSize = (type: string) => {
 
 export const translateMoisture = (type: string) => {
   const translation = {
-    dry: 'seca',
+    dry: 'seco',
     balanced: 'normal',
-    oily: 'oleosa',
+    oily: 'oleoso',
   }
 
   return translation[type]

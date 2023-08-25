@@ -1,12 +1,32 @@
 @layout('public/layout')
 
 @section('content')
-<div>
-  <p>Resultado</p>
-  <h1>Fórmula {{client.quizzes[0].formulaName}}</h1>
+<section class="main-page">
+  <h1>Seus produtos Mahá estão chegando</h1>
   <p>
-    Resumo da fórmula
+    Resumo do seu perfil capilar
   </p>
+
+  <section>
+    <div>
+      <h4>Tipo de cabelo: {{ client.quizzes[0].translated.hairType}}</h4>
+      <h4>Expessura do fio: {{ client.quizzes[0].translated.hairStructure}}</h4>
+      <h4>Oleosidade do fio: {{ client.quizzes[0].translated.moisture}}</h4>
+      <h4>Tamanho: {{ client.quizzes[0].translated.hairSize}}</h4>
+    </div>
+  </section>
+
+  <section>
+    <h3>A base principal de seu shampoo e condicionador contém esses ingredientes:</h3>
+    <p>Analisando seu fio e suas particularidades, selecionamos seus ingredientes criteriosamente.</p>
+    @each(ingredient in formula)
+    <div>
+      <img class="ingredient-image" src={{ingredient.imageSrc}} alt={{ingredient.name}}>
+      <h3>{{ingredient.name}}</h3>
+      <p>{{ingredient.description}}</p>
+    </div>
+    @endeach
+  </section>
   <a href="/app/cart">Avançar</a>
-</div>
+</section>
 @endsection

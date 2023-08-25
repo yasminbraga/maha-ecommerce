@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Client from 'App/Models/Client'
 import Quiz from 'App/Models/Quiz'
+import { generateFormula } from 'utils/generateFormula'
 
 export default class QuizController {
   public async index({ view, auth }: HttpContextContract) {
@@ -9,20 +10,20 @@ export default class QuizController {
         .where('email', auth.user!.email)
         .preload('quizzes', (query) => query.orderBy('created_at', 'desc'))
         .first()
-      console.log(client?.toJSON())
-      return view.render('public/result', { client })
+      const formula = generateFormula(client?.quizzes[0])
+      return view.render('public/result', { client, formula })
     } catch (error) {
       console.error(error)
     }
   }
-  public async store({ request, auth }: HttpContextContract) {
+  public async store({ request, auth, response }: HttpContextContract) {
     const { data } = request.body()
     const { ...formData } = data
 
     try {
       const client = await Client.findByOrFail('email', auth.user!.email)
-      const quiz = await Quiz.create({ clientId: client.id, ...formData })
-      return console.log(quiz)
+      await Quiz.create({ clientId: client.id, ...formData })
+      return response.redirect('/result')
     } catch (error) {
       console.error(error)
     }

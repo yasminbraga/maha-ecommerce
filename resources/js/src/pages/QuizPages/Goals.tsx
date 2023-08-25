@@ -18,7 +18,10 @@ const Goals: React.FC = () => {
   }
 
   return (
-    <QuizWrapper title="Qual os objetivos?" subtitle="Selecione cinco">
+    <QuizWrapper
+      title="Qual os objetivos?"
+      subtitle="Selecione cinco objetivos relacionados a problemas que você enfrenta com seu cabelo"
+    >
       <div>
         <input
           type="checkbox"

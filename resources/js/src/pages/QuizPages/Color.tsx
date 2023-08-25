@@ -20,7 +20,7 @@ const Color: React.FC = () => {
     setData({ ...data, ['color']: target.value })
   }
   return (
-    <QuizWrapper title="Qua o comprimento do seu cabelo?" subtitle="">
+    <QuizWrapper title="Que cor melhor descreve seu cabelo?" subtitle="">
       <RadioWrapper onChange={(e) => handleSetValue(e)}>
         <Field>
           <input type="radio" id="blonde" value="blonde" checked={data['color'] === 'blonde'} />
